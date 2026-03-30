@@ -3,6 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 
 // This would typically come from a database or CMS
 const services = [
@@ -55,9 +56,9 @@ export default function ServicesPage() {
               <Button asChild className="bg-pink-600 hover:bg-pink-700">
                 <Link href={`/services/${service.id}`}>Learn More</Link>
               </Button>
-              <Button asChild variant="outline" className="border-pink-600 text-pink-600 hover:bg-pink-50">
-                <Link href="/booking">Book Now</Link>
-              </Button>
+              <BooksyBookButton variant="outline" className="border-pink-600 text-pink-600 hover:bg-pink-50">
+                Book Now
+              </BooksyBookButton>
             </CardFooter>
           </Card>
         ))}

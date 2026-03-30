@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 
 export default function Hero() {
   return (
@@ -17,9 +17,9 @@ export default function Hero() {
                 to eyelash extensions, our expert technicians help you look and feel your best.
               </p>
               <div className="mt-10 flex items-center gap-x-6">
-                <Button asChild className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8 py-6">
-                  <Link href="/booking">Book Appointment</Link>
-                </Button>
+                <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8 py-6">
+                  Book Appointment
+                </BooksyBookButton>
                 <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
                   About Elen <span aria-hidden="true">→</span>
                 </Link>
@@ -28,14 +28,14 @@ export default function Hero() {
           </div>
         </div>
         <div className="mt-20 sm:mt-24 md:mx-auto md:max-w-2xl lg:mx-0 lg:mt-0 lg:w-screen">
-          <div className="relative rounded-xl shadow-xl overflow-hidden">
+          <div className="relative aspect-[4/3] w-full rounded-xl shadow-xl overflow-hidden">
             <Image
-              src="/placeholder.svg?height=600&width=800"
-              alt="Beauty treatment"
-              width={800}
-              height={600}
-              className="w-full h-full object-cover"
+              src="/images/hero/image.png"
+              alt="Elen beauty studio — eyelash extensions and semi-permanent makeup"
+              fill
+              className="object-cover"
               priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
         </div>

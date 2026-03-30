@@ -1,7 +1,6 @@
 import Image from "next/image"
-import Link from "next/link"
 import type { Metadata } from "next"
-import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
@@ -9,16 +8,19 @@ import ServiceTestimonials from "@/components/services/service-testimonials"
 
 export const metadata: Metadata = {
   title: "Eyelash Extensions | Elen.MakeUp.Telford",
-  description: "Professional eyelash extension services including classic, volume, and hybrid sets in Telford.",
-  keywords: "eyelash extensions, classic lashes, volume lashes, hybrid lashes, lash lift, Telford",
+  description:
+    "UV lash extensions in Telford. Fuller, lighter-feeling lashes with a faster cure and a comfortable finish. Book a consultation, patch test, or full set.",
+  keywords:
+    "UV lash extensions, LED lash extensions, eyelash extensions, classic lashes, volume lashes, hybrid lashes, lash lift, Telford",
 }
 
 // Eyelash extensions service data
 const serviceData = {
   title: "Eyelash Extensions",
-  description: "Get fuller, longer lashes that enhance your eyes and simplify your routine.",
+  description:
+    "Wake up with polished lashes every day—custom-mapped for your eye shape, lifestyle, and the look you love in Telford.",
   longDescription:
-    "Eyelash extensions are a cosmetic application used to enhance the length, curl, fullness, and thickness of natural eyelashes. The extensions may be made from several materials including mink, silk, synthetic, human or horsehair. The main method of applying the extensions is by using a cyanoacrylate adhesive to apply the extension(s) to the natural lash 1–2 mm from the base of the natural eyelash.",
+    "If you want the “mascara look” without mascara, eyelash extensions are the most effortless upgrade. I create classic, hybrid, and volume sets that look flattering up close (not heavy), feel comfortable, and suit your natural lashes.\n\nI’m based in Telford and work from a beautiful, luxury-feel space with separate treatment rooms and a super-comfy lash bed—because you’ll be lying down for a couple of hours, and comfort matters.\n\nMy signature option is UV/LED lash extensions: the adhesive is cured with a controlled UV/LED light, which means a faster set and a more consistent finish compared to traditional air-drying glues that depend on humidity. Many clients also find the experience more comfortable because there’s less time with wet adhesive.\n\nNot sure what to book? Start with a consultation or patch test and we’ll choose the safest, most flattering set for you.",
   image: "/placeholder.svg?height=600&width=1200",
   gallery: [
     "/placeholder.svg?height=400&width=600",
@@ -39,22 +41,37 @@ const serviceData = {
     {
       question: "How long do eyelash extensions last?",
       answer:
-        "With proper care, eyelash extensions can last for the full growth cycle of your natural lashes, typically 6-8 weeks. However, we recommend fills every 2-3 weeks to maintain a full look as your natural lashes shed.",
+        "Lash extensions shed with your natural lash cycle, so the look gradually softens over time. Most clients book infills every 2–3 weeks to keep them looking full and even.",
     },
     {
       question: "Can I wear mascara with lash extensions?",
       answer:
-        "We recommend avoiding mascara, especially oil-based formulas, as it can break down the adhesive and be difficult to remove without damaging the extensions. Your lash extensions will give you the look of mascara without the need for additional products.",
+        "It’s best to skip mascara (especially waterproof/oil-based formulas). Extensions are designed to give you that mascara effect already, and mascara can make cleansing harder and shorten retention.",
     },
     {
       question: "How do I care for my lash extensions?",
       answer:
-        "Avoid oil-based products around the eyes, do not use an eyelash curler, avoid rubbing your eyes, and gently cleanse your lashes daily with a lash-safe cleanser. We provide detailed aftercare instructions after your appointment.",
+        "Cleanse daily with a lash-safe cleanser, avoid oil-based products around the eyes, and don’t rub or pick at lashes. I’ll show you the easiest routine to keep them fluffy and long-lasting.",
+    },
+    {
+      question: "What are UV/LED lash extensions?",
+      answer:
+        "UV/LED lash extensions use a professional lash adhesive that’s cured instantly with a controlled UV/LED light. Because the cure is controlled by the technician (instead of relying on room humidity), placement can be more precise and the finish more consistent.",
+    },
+    {
+      question: "Are UV/LED lashes better for sensitive eyes?",
+      answer:
+        "Everyone is different, but many clients report a more comfortable experience because the adhesive cures quickly and there’s less time with wet glue. If you have sensitive eyes or a history of reactions, I recommend booking a patch test first.",
+    },
+    {
+      question: "Do you offer a patch test?",
+      answer:
+        "Yes. If you’re new to extensions, have sensitive eyes, or you’ve reacted to lash products before, a patch test is a smart first step. Book your patch test/consultation and I’ll advise the best option for you.",
     },
     {
       question: "Are eyelash extensions safe?",
       answer:
-        "Yes, when applied by a trained professional, eyelash extensions are safe. We use high-quality, hypoallergenic adhesives and follow strict hygiene protocols to ensure your safety and comfort.",
+        "When applied correctly by a trained technician, lash extensions are a safe beauty treatment. I work hygienically, isolate each natural lash carefully, and choose styling and weights that suit your natural lashes—so your set looks beautiful and feels comfortable.",
     },
     {
       question: "How long does the application process take?",
@@ -111,9 +128,9 @@ export default function EyelashExtensionsPage() {
           <h2 className="text-2xl font-bold mb-4 font-heading">About {serviceData.title}</h2>
           <p className="text-lg text-gray-700 mb-8">{serviceData.longDescription}</p>
 
-          <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            <Link href="/booking">Book This Service</Link>
-          </Button>
+          <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+            Book a Consultation / Patch Test
+          </BooksyBookButton>
         </div>
 
         <div className="bg-[#F8F5F2] p-6 rounded-lg">
@@ -121,23 +138,23 @@ export default function EyelashExtensionsPage() {
           <ul className="space-y-3">
             <li className="flex items-start">
               <div className="text-amber-600 mr-2">✓</div>
-              <span>Certified lash technician with years of experience</span>
+              <span>UV/LED lash extensions available (signature method)</span>
             </li>
             <li className="flex items-start">
               <div className="text-amber-600 mr-2">✓</div>
-              <span>Premium lashes and hypoallergenic adhesives</span>
+              <span>Customized mapping for your eye shape and desired style</span>
             </li>
             <li className="flex items-start">
               <div className="text-amber-600 mr-2">✓</div>
-              <span>Customized lash design for your eye shape</span>
+              <span>Lightweight sets that look polished up close</span>
             </li>
             <li className="flex items-start">
               <div className="text-amber-600 mr-2">✓</div>
-              <span>Relaxing and hygienic environment</span>
+              <span>Luxury-feel space with private rooms and a super-comfy lash bed</span>
             </li>
             <li className="flex items-start">
               <div className="text-amber-600 mr-2">✓</div>
-              <span>Satisfaction guaranteed</span>
+              <span>Aftercare guidance so your lashes stay beautiful longer</span>
             </li>
           </ul>
         </div>
@@ -153,9 +170,9 @@ export default function EyelashExtensionsPage() {
 
       <div className="mt-16 text-center">
         <h2 className="text-2xl font-bold mb-6 font-heading">Ready to Experience {serviceData.title}?</h2>
-        <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
-          <Link href="/booking">Book Your Appointment</Link>
-        </Button>
+        <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
+          Book Your Lash Set
+        </BooksyBookButton>
       </div>
     </div>
   )

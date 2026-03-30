@@ -1,8 +1,7 @@
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
-import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
@@ -235,9 +234,9 @@ export default function ServicePage({ params }: ServiceParams) {
           <h2 className="text-2xl font-bold mb-4">About {service.title}</h2>
           <p className="text-lg text-gray-700 mb-8">{service.longDescription}</p>
 
-          <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700">
-            <Link href="/booking">Book This Service</Link>
-          </Button>
+          <BooksyBookButton size="lg" className="bg-pink-600 hover:bg-pink-700">
+            Book This Service
+          </BooksyBookButton>
         </div>
 
         <div className="bg-gray-50 p-6 rounded-lg">
@@ -287,9 +286,9 @@ export default function ServicePage({ params }: ServiceParams) {
 
       <div className="mt-16 text-center">
         <h2 className="text-2xl font-bold mb-6">Ready to Experience {service.title}?</h2>
-        <Button asChild size="lg" className="bg-pink-600 hover:bg-pink-700 px-8">
-          <Link href="/booking">Book Your Appointment</Link>
-        </Button>
+        <BooksyBookButton size="lg" className="bg-pink-600 hover:bg-pink-700 px-8">
+          Book Your Appointment
+        </BooksyBookButton>
       </div>
     </div>
   )

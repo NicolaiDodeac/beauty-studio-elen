@@ -37,45 +37,30 @@ export default function BookingForm() {
     e.preventDefault()
     setIsLoading(true)
 
-    // Simulate API call for booking
-    try {// Send SMS
-      await fetch("https://djnuittcveksrrpmbdgj.supabase.co/functions/v1/send-sms", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          phone,
-          service: services.find((s) => s.id === service)?.name || "Service",
-          date: date?.toISOString().split("T")[0],
-          time,
-        }),
-      })
-  
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.replace(/\/$/, "")
+      if (baseUrl) {
+        await fetch(`${baseUrl}/functions/v1/send-sms`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            phone,
+            service: services.find((s) => s.id === service)?.name || "Service",
+            date: date?.toISOString().split("T")[0],
+            time,
+          }),
+        })
+      }
+
       await new Promise((resolve) => setTimeout(resolve, 1000))
-      const checkoutRes = await fetch("/api/checkout/session", {
-        method: "POST",
-      })
-      const { url } = await checkoutRes.json()
-      window.location.href = url // Redirect to Stripe Checkout
-      
-      // Redirect to payment page
+      // This form does not create a Supabase booking first; use /booking for the full flow.
       router.push("/booking/payment")
     } catch (error) {
       console.error("Booking error:", error)
       setIsLoading(false)
     }
-      // In a real app, this would be an API call to create the booking
-  //     await new Promise((resolve) => setTimeout(resolve, 1500))
-
-  //     // Simulate redirect to payment page
-  //     router.push("/booking/payment")
-  //   } catch (error) {
-  //     console.error("Booking error:", error)
-  //     setIsLoading(false)
-  //   }
-  // }
+  }
 
   const nextStep = () => {
     setStep(step + 1)

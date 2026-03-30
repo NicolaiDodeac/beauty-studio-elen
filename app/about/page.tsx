@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Award, CheckCircle } from "lucide-react"
 
@@ -28,10 +28,12 @@ export default function AboutPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
         <div className="relative h-[500px] rounded-xl overflow-hidden">
           <Image
-            src="/placeholder.svg?height=800&width=600"
+            src="/images/about/Elen.png"
             alt="Elen, founder of Elen.MakeUp.Telford"
             fill
             className="object-cover"
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
         <div>
@@ -52,9 +54,7 @@ export default function AboutPage() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button asChild className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-              <Link href="/booking">Book with Elen</Link>
-            </Button>
+            <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">Book with Elen</BooksyBookButton>
           </div>
         </div>
       </div>
@@ -191,9 +191,9 @@ export default function AboutPage() {
         <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
           Book your appointment today and discover why our clients keep coming back to Elen.MakeUp.Telford.
         </p>
-        <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
-          <Link href="/booking">Book an Appointment</Link>
-        </Button>
+        <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
+          Book an Appointment
+        </BooksyBookButton>
       </div>
     </div>
   )

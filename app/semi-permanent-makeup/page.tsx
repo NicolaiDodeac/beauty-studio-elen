@@ -1,11 +1,13 @@
 import Image from "next/image"
-import Link from "next/link"
 import type { Metadata } from "next"
-import { Button } from "@/components/ui/button"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
 import ServiceTestimonials from "@/components/services/service-testimonials"
+import ProcedureReviews from "@/components/reviews/procedure-reviews"
+import GoogleReviews from "@/components/reviews/google-reviews"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { getProcedureReviews } from "@/lib/procedure-reviews"
 
 export const metadata: Metadata = {
   title: "Semi-Permanent Makeup | Elen.MakeUp.Telford",
@@ -88,7 +90,10 @@ const serviceData = {
   ],
 }
 
-export default function SemiPermanentMakeupPage() {
+export default async function SemiPermanentMakeupPage() {
+  const procedureKey = "semi-permanent-makeup"
+  const reviews = await getProcedureReviews(procedureKey)
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
@@ -113,9 +118,9 @@ export default function SemiPermanentMakeupPage() {
           <h2 className="text-2xl font-bold mb-4 font-heading">About {serviceData.title}</h2>
           <p className="text-lg text-gray-700 mb-8">{serviceData.longDescription}</p>
 
-          <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            <Link href="/booking">Book This Service</Link>
-          </Button>
+          <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+            Book This Service
+          </BooksyBookButton>
         </div>
 
         <div className="bg-[#F8F5F2] p-6 rounded-lg">
@@ -153,11 +158,23 @@ export default function SemiPermanentMakeupPage() {
 
       <ServiceTestimonials testimonials={serviceData.testimonials} />
 
+      <section className="my-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <ProcedureReviews
+            procedureName={serviceData.title}
+            reviews={reviews}
+            heading={`Reviews for ${serviceData.title} (from admin)`}
+            variant="panel"
+          />
+          <GoogleReviews heading="Google reviews" />
+        </div>
+      </section>
+
       <div className="mt-16 text-center">
         <h2 className="text-2xl font-bold mb-6 font-heading">Ready to Experience {serviceData.title}?</h2>
-        <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
-          <Link href="/booking">Book Your Appointment</Link>
-        </Button>
+        <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
+          Book Your Appointment
+        </BooksyBookButton>
       </div>
     </div>
   )

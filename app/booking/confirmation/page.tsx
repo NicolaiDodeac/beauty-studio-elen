@@ -1,19 +1,13 @@
 "use client"
 
+import { Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import Link from "next/link"
 import { CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-// export const metadata = {
-//   title: "Booking Confirmation | Elen.MakeUp.Telford",
-//   description: "Your appointment has been confirmed. Thank you for booking with Elen.MakeUp.Telford.",
-// }
-export default function ConfirmationPage() {
+function ConfirmationContent() {
   const searchParams = useSearchParams()
-  if (!searchParams) {
-    return <p>Loading...</p>
-  }
 
   const service = searchParams.get("service") || "Selected service"
   const date = searchParams.get("date")
@@ -24,10 +18,9 @@ export default function ConfirmationPage() {
         day: "numeric",
       })
     : "Selected date"
-  const time = searchParams.time || "Selected time"
-  const payment = searchParams.payment || "card"
+  const time = searchParams.get("time") || "Selected time"
+  const payment = searchParams.get("payment") || "card"
 
-  // Map payment method to display name
   const paymentMethodDisplay =
     {
       card: "Credit/Debit Card",
@@ -47,8 +40,8 @@ export default function ConfirmationPage() {
       </h1>
 
       <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-        Thank you for booking with Elen.MakeUp.Telford. We've sent a confirmation email with all the details of your
-        appointment.
+        Thank you for booking with Elen.MakeUp.Telford. We&apos;ve sent a confirmation email with all the details of
+        your appointment.
       </p>
 
       <div className="bg-[#F8F5F2] p-6 rounded-lg mb-8 max-w-md mx-auto">
@@ -84,5 +77,17 @@ export default function ConfirmationPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="max-w-4xl mx-auto px-6 py-12 text-center text-muted-foreground">Loading confirmation…</div>
+      }
+    >
+      <ConfirmationContent />
+    </Suspense>
   )
 }

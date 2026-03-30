@@ -2,9 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { SiteLogoMark } from "@/components/layout/site-logo-mark"
+import { SITE_LOGO_ALT, SITE_LOGO_HEADER_PX } from "@/lib/site-logo"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -22,17 +23,14 @@ export default function Header() {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Elen.MakeUp.Telford</span>
-            <div className="h-12 w-auto relative">
-              <Image
-                src="/placeholder.svg?height=48&width=180"
-                alt="Elen.MakeUp.Telford Logo"
-                width={180}
-                height={48}
-                className="object-contain"
-              />
-            </div>
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+            <span className="sr-only">{SITE_LOGO_ALT}</span>
+            <SiteLogoMark
+              boxClassName="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:h-28 lg:w-28"
+              sizes={`(max-width: 640px) 64px, (max-width: 768px) 80px, (max-width: 1024px) 96px, ${SITE_LOGO_HEADER_PX}px`}
+              alt=""
+              priority
+            />
           </Link>
         </div>
         <div className="flex lg:hidden">
@@ -57,9 +55,9 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button asChild className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            <Link href="/booking">Book Appointment</Link>
-          </Button>
+          <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+            Book Appointment
+          </BooksyBookButton>
         </div>
       </nav>
 
@@ -69,17 +67,13 @@ export default function Header() {
           <div className="fixed inset-0 flex">
             <div className="w-full">
               <div className="flex items-center justify-between p-6">
-                <Link href="/" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Elen.MakeUp.Telford</span>
-                  <div className="h-12 w-auto relative">
-                    <Image
-                      src="/placeholder.svg?height=48&width=180"
-                      alt="Elen.MakeUp.Telford Logo"
-                      width={180}
-                      height={48}
-                      className="object-contain"
-                    />
-                  </div>
+                <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+                  <span className="sr-only">{SITE_LOGO_ALT}</span>
+                  <SiteLogoMark
+                    boxClassName="h-20 w-20 sm:h-24 sm:w-24"
+                    sizes="(max-width: 640px) 80px, 96px"
+                    alt=""
+                  />
                 </Link>
                 <button
                   type="button"
@@ -103,11 +97,12 @@ export default function Header() {
                     </Link>
                   ))}
                   <div className="mt-4">
-                    <Button asChild className="w-full bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-                      <Link href="/booking" onClick={() => setMobileMenuOpen(false)}>
-                        Book Appointment
-                      </Link>
-                    </Button>
+                    <BooksyBookButton
+                      className="w-full bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Book Appointment
+                    </BooksyBookButton>
                   </div>
                 </div>
               </div>

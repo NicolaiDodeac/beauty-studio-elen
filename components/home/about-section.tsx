@@ -1,13 +1,20 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 
 export default function AboutSection() {
   return (
     <section className="py-12 px-6 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="relative rounded-xl overflow-hidden h-[500px]">
-          <Image src="/placeholder.svg?height=800&width=600" alt="Elen at work" fill className="object-cover" />
+          <Image
+            src="/images/about/Elen.png"
+            alt="Elen at work — Elen.MakeUp.Telford"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
         </div>
 
         <div>
@@ -31,9 +38,9 @@ export default function AboutSection() {
             <Button asChild variant="outline" className="border-amber-600 text-amber-600 hover:bg-amber-50">
               <Link href="/about">Learn More About Elen</Link>
             </Button>
-            <Button asChild className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-              <Link href="/booking">Book an Appointment</Link>
-            </Button>
+            <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+              Book an Appointment
+            </BooksyBookButton>
           </div>
         </div>
       </div>

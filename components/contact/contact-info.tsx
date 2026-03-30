@@ -1,6 +1,12 @@
-import { MapPin, Phone, Mail, Instagram, Facebook } from "lucide-react"
+import { MapPin, Phone, Mail, Instagram, Facebook, MessageCircle } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
+import {
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+  SITE_WHATSAPP_DEFAULT_MESSAGE,
+  siteWhatsAppUrl,
+} from "@/lib/site-contact"
 
 export default function ContactInfo() {
   return (
@@ -25,10 +31,28 @@ export default function ContactInfo() {
             <div>
               <h3 className="font-medium">Phone</h3>
               <p className="text-gray-600">
-                <Link href="tel:+447879781581" className="hover:text-amber-600">
-                  +44 (0) 7879 781581
+                <Link href={`tel:${SITE_PHONE_TEL.replace(/\s/g, "")}`} className="hover:text-amber-600">
+                  {SITE_PHONE_DISPLAY}
                 </Link>
               </p>
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <MessageCircle className="h-5 w-5 text-green-600 mr-3 mt-0.5" />
+            <div>
+              <h3 className="font-medium">WhatsApp</h3>
+              <p className="text-gray-600">
+                <Link
+                  href={siteWhatsAppUrl(SITE_WHATSAPP_DEFAULT_MESSAGE)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-green-700 hover:text-green-800 hover:underline"
+                >
+                  Chat on WhatsApp
+                </Link>
+              </p>
+              <p className="text-sm text-gray-500 mt-1">Quickest way to reach us for bookings and questions.</p>
             </div>
           </div>
 

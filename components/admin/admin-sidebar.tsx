@@ -3,12 +3,13 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Calendar, MessageSquare, FileText, Settings, LogOut, Menu, X } from "lucide-react"
+import { Calendar, Mail, MessageSquare, FileText, Settings, LogOut, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 const navigation = [
   { name: "Dashboard", href: "/admin/dashboard", icon: Calendar },
   { name: "Bookings", href: "/admin/bookings", icon: Calendar },
+  { name: "Messages", href: "/admin/contacts", icon: Mail },
   { name: "Reviews", href: "/admin/reviews", icon: MessageSquare },
   { name: "Blog Posts", href: "/admin/blog", icon: FileText },
   { name: "Settings", href: "/admin/settings", icon: Settings },
