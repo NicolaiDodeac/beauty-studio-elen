@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 
 // Eyelash extensions service data
 const serviceData = {
-  title: "Eyelash Extensions",
+  title: "Eyelash Extensions in Telford",
   description:
-    "Wake up with polished lashes every day—custom-mapped for your eye shape, lifestyle, and the look you love in Telford.",
+    "Wake up with polished lashes every day - custom-mapped for your eye shape, lifestyle, and the look you love.",
   longDescription:
-    "If you want the “mascara look” without mascara, eyelash extensions are the most effortless upgrade. I create classic, hybrid, and volume sets that look flattering up close (not heavy), feel comfortable, and suit your natural lashes.\n\nI’m based in Telford and work from a beautiful, luxury-feel space with separate treatment rooms and a super-comfy lash bed—because you’ll be lying down for a couple of hours, and comfort matters.\n\nMy signature option is UV/LED lash extensions: the adhesive is cured with a controlled UV/LED light, which means a faster set and a more consistent finish compared to traditional air-drying glues that depend on humidity. Many clients also find the experience more comfortable because there’s less time with wet adhesive.\n\nNot sure what to book? Start with a consultation or patch test and we’ll choose the safest, most flattering set for you.",
+    "If you want the “mascara look” without mascara, eyelash extensions are the most effortless upgrade. I create classic, hybrid, and volume sets that look flattering up close (not heavy), feel comfortable, and suit your natural lashes.\n\nI’m based in Telford and work from a beautiful, luxury-feel space with separate treatment rooms and a super-comfy lash bed—because you’ll be lying down throughout the appointment, and comfort matters.\n\nMy signature option is UV/LED lash extensions: the adhesive is cured with a very safe and controlled UV/LED light, which means a faster set and a more consistent finish compared to traditional air-drying glues that depend on humidity. Many clients also find the experience more comfortable because there’s less time with wet adhesive. No dangerous fumes, no strong smell, no need to wait for it to dry, and also last longer. \n\nNot sure what to book? Start with a consultation or patch test and we’ll choose the safest, most flattering set for you.",
   image: "/placeholder.svg?height=600&width=1200",
   gallery: [
     "/placeholder.svg?height=400&width=600",
