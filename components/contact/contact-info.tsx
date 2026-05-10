@@ -1,12 +1,16 @@
-import { MapPin, Phone, Mail, Instagram, Facebook, MessageCircle } from "lucide-react"
+import { MapPin, Phone, Mail, Instagram, MessageCircle } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
 import {
+  SITE_ADDRESS_LINES,
   SITE_PHONE_DISPLAY,
   SITE_PHONE_TEL,
+  SITE_PUBLIC_EMAIL,
   SITE_WHATSAPP_DEFAULT_MESSAGE,
+  siteMailtoHref,
   siteWhatsAppUrl,
 } from "@/lib/site-contact"
+import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 
 export default function ContactInfo() {
   return (
@@ -20,9 +24,11 @@ export default function ContactInfo() {
             <MapPin className="h-5 w-5 text-amber-600 mr-3 mt-0.5" />
             <div>
               <h3 className="font-medium">Address</h3>
-              <p className="text-gray-600">House Of Beauty, Wellington Rd, Donnington</p>
-              <p className="text-gray-600">Telford, TF2 8AH</p>
-              <p className="text-gray-600">United Kingdom</p>
+              {SITE_ADDRESS_LINES.map((line) => (
+                <p key={line} className="text-gray-600">
+                  {line}
+                </p>
+              ))}
             </div>
           </div>
 
@@ -61,8 +67,8 @@ export default function ContactInfo() {
             <div>
               <h3 className="font-medium">Email</h3>
               <p className="text-gray-600">
-                <Link href="mailto:Lena.3art@gmail.com" className="hover:text-amber-600">
-                Lena.3art@gmail.com
+                <Link href={siteMailtoHref()} className="hover:text-amber-600">
+                  {SITE_PUBLIC_EMAIL}
                 </Link>
               </p>
             </div>
@@ -72,22 +78,13 @@ export default function ContactInfo() {
             <h3 className="font-medium mb-3">Follow Us</h3>
             <div className="flex space-x-4">
               <Link
-                href="https://instagram.com"
+                href={SITE_INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#F8F5F2] hover:bg-[#E0D4C8] p-2 rounded-full transition-colors"
               >
                 <Instagram className="h-5 w-5 text-gray-700" />
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#F8F5F2] hover:bg-[#E0D4C8] p-2 rounded-full transition-colors"
-              >
-                <Facebook className="h-5 w-5 text-gray-700" />
-                <span className="sr-only">Facebook</span>
+                <span className="sr-only">Instagram @elenmakeuptelford</span>
               </Link>
             </div>
           </div>

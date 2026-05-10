@@ -9,19 +9,25 @@ export default function Hero() {
         <div className="px-6 lg:px-0 lg:pt-4">
           <div className="mx-auto max-w-2xl">
             <div className="max-w-lg">
-              <h1 className="mt-10 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl font-heading">
-                Enhance Your Natural Beauty
+              <p className="mt-10 text-sm font-medium uppercase tracking-[0.2em] text-stone-600">
+                Natural luxury PMU in Telford
+              </p>
+              <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl font-heading">
+                Soft brows &amp; polished details
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Experience premium beauty services tailored to enhance your unique features. From semi-permanent makeup
-                to eyelash extensions, our expert technicians help you look and feel your best.
+                Powder brows and semi-permanent makeup designed to look soft and elegant — so you feel effortlessly put
+                together, every day.
               </p>
-              <div className="mt-10 flex items-center gap-x-6">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8 py-6">
-                  Book Appointment
+                  Book Free Consultation
                 </BooksyBookButton>
-                <Link href="/about" className="text-sm font-semibold leading-6 text-gray-900">
-                  About Elen <span aria-hidden="true">→</span>
+                <Link
+                  href="/semi-permanent-makeup"
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  View Results <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
@@ -31,7 +37,7 @@ export default function Hero() {
           <div className="relative aspect-[4/3] w-full rounded-xl shadow-xl overflow-hidden">
             <Image
               src="/images/hero/image.png"
-              alt="Elen beauty studio — eyelash extensions and semi-permanent makeup"
+              alt="Natural powder brows and PMU — ELEN Makeup Telford"
               fill
               className="object-cover"
               priority

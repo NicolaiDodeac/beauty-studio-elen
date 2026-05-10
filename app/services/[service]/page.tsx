@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
@@ -6,15 +7,17 @@ import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
 import ServiceTestimonials from "@/components/services/service-testimonials"
+import GoogleReviews from "@/components/reviews/google-reviews"
+import { getGoogleReviews } from "@/lib/google-reviews"
 
 // This would typically come from a database or CMS
 const services = {
   "permanent-makeup": {
-    title: "Permanent Makeup",
+    title: "Powder brows & semi-permanent makeup",
     description:
-      "Enhance your natural features with long-lasting makeup solutions that save you time and boost your confidence.",
+      "Soft powder brows, lip blush, and refined liner — tailored to your features for natural healed results in Telford.",
     longDescription:
-      "Permanent makeup, also known as micropigmentation, is a cosmetic technique which employs tattoos as a means of producing designs that resemble makeup, such as eyelining and other permanent enhancing colors to the skin of the face, lips, and eyelids. It is also used to produce artificial eyebrows, particularly in people who have lost them as a consequence of old age, disease, such as alopecia, or chemotherapy.",
+      "Semi-permanent makeup (micropigmentation) lets you wake up with softly defined brows, balanced lips, or subtle liner — without a harsh or heavily tattooed look. At ELEN Makeup Telford we prioritise colour theory, brow mapping, and a calm appointment experience so your results feel elegant and wearable every day.",
     image: "/placeholder.svg?height=600&width=1200",
     gallery: [
       "/placeholder.svg?height=400&width=600",
@@ -52,28 +55,14 @@ const services = {
           "Some clients experience minor swelling and redness immediately after the procedure, which typically subsides within 24-48 hours. We provide detailed aftercare instructions to minimize any potential side effects.",
       },
     ],
-    testimonials: [
-      {
-        id: 1,
-        content:
-          "I've been self-conscious about my sparse eyebrows for years. The microblading procedure has completely transformed my face and my confidence!",
-        author: "Jessica T.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-      {
-        id: 2,
-        content:
-          "The permanent eyeliner has been a game-changer for my morning routine. I wake up looking put-together, even without any other makeup.",
-        author: "Michelle K.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-    ],
+    testimonials: [],
   },
   "eyelash-extensions": {
-    title: "Eyelash Extensions",
-    description: "Get fuller, longer lashes that enhance your eyes and simplify your routine.",
+    title: "Eyelash extensions",
+    description:
+      "Classic, hybrid, and volume lashes — mapped for your eye shape with comfortable wear and a polished, natural finish.",
     longDescription:
-      "Eyelash extensions are a cosmetic application used to enhance the length, curl, fullness, and thickness of natural eyelashes. The extensions may be made from several materials including mink, silk, synthetic, human or horsehair. The main method of applying the extensions is by using a cyanoacrylate adhesive to apply the extension(s) to the natural lash 1–2 mm from the base of the natural eyelash.",
+      "Eyelash extensions add length and fullness while respecting your natural lashes. Sets are customised for your eyes and lifestyle, with careful isolation, safe weights, and aftercare guidance — so your lashes look refined up close and feel comfortable day to day.",
     image: "/placeholder.svg?height=600&width=1200",
     gallery: [
       "/placeholder.svg?height=400&width=600",
@@ -111,28 +100,14 @@ const services = {
           "Yes, when applied by a trained professional, eyelash extensions are safe. We use high-quality, hypoallergenic adhesives and follow strict hygiene protocols to ensure your safety and comfort.",
       },
     ],
-    testimonials: [
-      {
-        id: 1,
-        content:
-          "I've been getting lash extensions for over a year now, and I can't imagine going back to my natural lashes. They save me so much time in the morning!",
-        author: "Amanda R.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-      {
-        id: 2,
-        content:
-          "The lash technician was so gentle and precise. My lashes look amazing and feel completely natural. Highly recommend!",
-        author: "Sophia L.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-    ],
+    testimonials: [],
   },
   "facial-treatments": {
-    title: "Facial Treatments",
-    description: "Rejuvenate your skin with our customized facial treatments.",
+    title: "Facial treatments",
+    description:
+      "Calm, restorative facials tailored to your skin — deep cleanse, massage, and hydration in a quiet treatment space.",
     longDescription:
-      "Our facial treatments are designed to address specific skin concerns while providing a relaxing, spa-like experience. Each facial begins with a thorough skin analysis, followed by deep cleansing, exfoliation, extractions (if needed), massage, mask, and hydration. We use premium skincare products tailored to your skin type and concerns.",
+      "Each facial begins with listening to your skin concerns, then a personalised cleanse, exfoliation where appropriate, treatment mask, and hydration. The goal is visible freshness and comfort — never overload — using thoughtful techniques and quality skincare.",
     image: "/placeholder.svg?height=600&width=1200",
     gallery: [
       "/placeholder.svg?height=400&width=600",
@@ -170,22 +145,7 @@ const services = {
           "We recommend allowing your skin to breathe for at least 24 hours after a facial. If you must wear makeup, apply it lightly and use mineral-based products that won't clog your pores.",
       },
     ],
-    testimonials: [
-      {
-        id: 1,
-        content:
-          "The anti-aging facial was incredible! My skin looks visibly firmer and more radiant. The esthetician was knowledgeable and recommended products perfect for my skin concerns.",
-        author: "Patricia M.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-      {
-        id: 2,
-        content:
-          "I've struggled with acne for years, and after just three acne clearing facials, my skin has improved dramatically. The staff is professional and the atmosphere is so relaxing.",
-        author: "David W.",
-        avatar: "/placeholder.svg?height=60&width=60",
-      },
-    ],
+    testimonials: [],
   },
 }
 
@@ -206,22 +166,24 @@ export async function generateMetadata({ params }: ServiceParams): Promise<Metad
   }
 
   return {
-    title: `${service.title} | Glow Beauty Studio`,
+    title: `${service.title} | ELEN Makeup Telford`,
     description: service.description,
   }
 }
 
-export default function ServicePage({ params }: ServiceParams) {
+export default async function ServicePage({ params }: ServiceParams) {
   const service = services[params.service as keyof typeof services]
 
   if (!service) {
     notFound()
   }
 
+  const googlePayload = await getGoogleReviews()
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">{service.title}</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">{service.title}</h1>
         <p className="text-xl text-gray-600 max-w-3xl">{service.description}</p>
       </div>
 
@@ -231,63 +193,85 @@ export default function ServicePage({ params }: ServiceParams) {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
-          <h2 className="text-2xl font-bold mb-4">About {service.title}</h2>
+          <h2 className="text-2xl font-bold mb-4 font-heading">About {service.title}</h2>
           <p className="text-lg text-gray-700 mb-8">{service.longDescription}</p>
+          {params.service === "permanent-makeup" ? (
+            <p className="mb-8 text-lg text-gray-700">
+              Interested mainly in brows? Start with our{" "}
+              <Link
+                href="/powder-brows-telford"
+                className="font-medium text-stone-800 underline underline-offset-4 hover:text-stone-950"
+              >
+                powder brows in Telford
+              </Link>{" "}
+              guide.
+            </p>
+          ) : null}
 
-          <BooksyBookButton size="lg" className="bg-pink-600 hover:bg-pink-700">
-            Book This Service
+          <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+            Book Free Consultation
           </BooksyBookButton>
         </div>
 
-        <div className="bg-gray-50 p-6 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Why Choose Us</h2>
+        <div className="bg-[#F8F5F2] p-6 rounded-lg border border-stone-100">
+          <h2 className="text-2xl font-bold mb-4 font-heading">Why ELEN Makeup Telford</h2>
           <ul className="space-y-3">
             <li className="flex items-start">
-              <svg className="h-6 w-6 text-pink-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-amber-800 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Certified professionals with years of experience</span>
+              <span>Thoughtful brow mapping and natural colour theory</span>
             </li>
             <li className="flex items-start">
-              <svg className="h-6 w-6 text-pink-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-amber-800 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Premium products and state-of-the-art equipment</span>
+              <span>Premium pigments and meticulous hygiene standards</span>
             </li>
             <li className="flex items-start">
-              <svg className="h-6 w-6 text-pink-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-amber-800 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Personalized approach to meet your unique needs</span>
+              <span>A calm, appointment-led experience — never rushed</span>
             </li>
             <li className="flex items-start">
-              <svg className="h-6 w-6 text-pink-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-amber-800 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Relaxing and hygienic environment</span>
+              <span>Trusted by clients across Telford &amp; Shropshire</span>
             </li>
             <li className="flex items-start">
-              <svg className="h-6 w-6 text-pink-600 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6 text-amber-800 mr-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
-              <span>Satisfaction guaranteed</span>
+              <span>Clear aftercare and realistic healed-result expectations</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <ServiceGallery images={service.gallery} title={service.title} />
+      <ServiceGallery
+        images={service.gallery}
+        title={service.title}
+        disclaimer="Visual placeholders while we prepare photography — not shown as client before-and-after results."
+      />
 
       <ServicePricing pricing={service.pricing} />
 
       <ServiceFAQ faqs={service.faqs} />
 
+      {googlePayload?.reviews?.length ? (
+        <section className="my-16 max-w-5xl">
+          <GoogleReviews payload={googlePayload} heading="Google reviews" />
+        </section>
+      ) : null}
+
       <ServiceTestimonials testimonials={service.testimonials} />
 
       <div className="mt-16 text-center">
-        <h2 className="text-2xl font-bold mb-6">Ready to Experience {service.title}?</h2>
-        <BooksyBookButton size="lg" className="bg-pink-600 hover:bg-pink-700 px-8">
-          Book Your Appointment
+        <h2 className="text-2xl font-bold mb-6 font-heading">Ready for a softer, more polished everyday look?</h2>
+        <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
+          Book Free Consultation
         </BooksyBookButton>
       </div>
     </div>

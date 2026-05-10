@@ -1,5 +1,9 @@
 import Image from "next/image"
+import Link from "next/link"
 import type { Metadata } from "next"
+import { Container } from "@/components/marketing/container"
+import { Section } from "@/components/marketing/section"
+import { JsonLd } from "@/components/seo/json-ld"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
@@ -7,21 +11,27 @@ import ServiceTestimonials from "@/components/services/service-testimonials"
 import ProcedureReviews from "@/components/reviews/procedure-reviews"
 import GoogleReviews from "@/components/reviews/google-reviews"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { buildPageMetadata } from "@/lib/seo/metadata"
+import { breadcrumbListSchema, serviceSchema } from "@/lib/seo/schema"
+import { getGoogleReviews } from "@/lib/google-reviews"
 import { getProcedureReviews } from "@/lib/procedure-reviews"
 
-export const metadata: Metadata = {
-  title: "Semi-Permanent Makeup | Elen.MakeUp.Telford",
-  description: "Professional semi-permanent makeup services including eyebrows, eyeliner, and lips in Telford.",
-  keywords: "semi-permanent makeup, microblading, powder brows, ombre brows, eyeliner, lip blush, Telford",
-}
+const SEMI_PAGE_DESCRIPTION =
+  "Natural luxury powder brows, ombre brows, and refined PMU in Telford — tailored mapping and soft healed results. Book a free consultation."
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Semi-Permanent Makeup Telford",
+  description: SEMI_PAGE_DESCRIPTION,
+  path: "/semi-permanent-makeup",
+})
 
 // Semi-permanent makeup service data
 const serviceData = {
   title: "Semi-Permanent Makeup",
   description:
-    "Enhance your natural features with long-lasting makeup solutions that save you time and boost your confidence.",
+    "Soft brows, subtle liner, and lip colour in Telford — tailored mapping and clear guidance from consultation through healing.",
   longDescription:
-    "Semi-permanent makeup, also known as micropigmentation, is a cosmetic technique which employs tattoos as a means of producing designs that resemble makeup, such as eyelining and other permanent enhancing colors to the skin of the face, lips, and eyelids. It is also used to produce artificial eyebrows, particularly in people who have lost them as a consequence of old age, disease, such as alopecia, or chemotherapy.",
+    "Semi-permanent makeup (micropigmentation) at ELEN Makeup Telford is about elegant, wearable colour — not harsh lines. We plan around how pigment settles on real skin: mapping, colour choice, and aftercare are discussed upfront. Suitability and expectations are always reviewed before treatment.",
   image: "/placeholder.svg?height=600&width=1200",
   gallery: [
     "/placeholder.svg?height=400&width=600",
@@ -65,37 +75,33 @@ const serviceData = {
         "Avoid alcohol, caffeine, and blood thinners for 24-48 hours before your appointment. Do not use retinol products on the treatment area for at least 2 weeks prior. Come to your appointment with clean skin and no makeup on the area to be treated.",
     },
   ],
-  testimonials: [
-    {
-      id: 1,
-      content:
-        "I've been self-conscious about my sparse eyebrows for years. The microblading procedure has completely transformed my face and my confidence!",
-      author: "Jessica T.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-    {
-      id: 2,
-      content:
-        "The permanent eyeliner has been a game-changer for my morning routine. I wake up looking put-together, even without any other makeup.",
-      author: "Michelle K.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-    {
-      id: 3,
-      content:
-        "Elen is a true artist! She took the time to understand exactly what I wanted for my brows and created the perfect shape and color for my face. I couldn't be happier with the results.",
-      author: "Amanda R.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-  ],
+  testimonials: [],
 }
 
 export default async function SemiPermanentMakeupPage() {
   const procedureKey = "semi-permanent-makeup"
-  const reviews = await getProcedureReviews(procedureKey)
+  const [reviews, googlePayload] = await Promise.all([
+    getProcedureReviews(procedureKey),
+    getGoogleReviews(),
+  ])
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+    <>
+      <JsonLd
+        data={[
+          serviceSchema({
+            name: serviceData.title,
+            description: serviceData.description,
+            path: "/semi-permanent-makeup",
+            serviceType: "Semi-permanent makeup",
+          }),
+          breadcrumbListSchema([
+            { name: "Home", path: "/" },
+            { name: "Semi-Permanent Makeup", path: "/semi-permanent-makeup" },
+          ]),
+        ]}
+      />
+      <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
         <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">
           {serviceData.title}
@@ -106,7 +112,7 @@ export default async function SemiPermanentMakeupPage() {
       <div className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-12">
         <Image
           src={serviceData.image || "/placeholder.svg"}
-          alt={serviceData.title}
+          alt="Semi-permanent makeup and powder brows — ELEN Makeup Telford, Shropshire"
           fill
           className="object-cover"
           priority
@@ -116,45 +122,102 @@ export default async function SemiPermanentMakeupPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
           <h2 className="text-2xl font-bold mb-4 font-heading">About {serviceData.title}</h2>
-          <p className="text-lg text-gray-700 mb-8">{serviceData.longDescription}</p>
+          <p className="text-lg text-gray-700 mb-4">{serviceData.longDescription}</p>
+          <p className="text-lg text-gray-700 mb-8">
+            For natural powder brows specifically, see our{" "}
+            <Link
+              href="/powder-brows-telford"
+              className="font-medium text-stone-800 underline underline-offset-4 hover:text-stone-950"
+            >
+              powder brows in Telford
+            </Link>{" "}
+            overview.
+          </p>
 
           <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            Book This Service
+            Book Free Consultation
           </BooksyBookButton>
         </div>
 
-        <div className="bg-[#F8F5F2] p-6 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4 font-heading">Why Choose Elen</h2>
+        <div className="rounded-lg border border-stone-100 bg-[#F8F5F2] p-6">
+          <h2 className="text-2xl font-bold mb-4 font-heading">Why ELEN Makeup Telford</h2>
           <ul className="space-y-3">
             <li className="flex items-start">
-              <div className="text-amber-600 mr-2">✓</div>
-              <span>Certified professional with years of experience</span>
+              <div className="mr-2 text-amber-800">✓</div>
+              <span>Consultation-led planning — suitability and expectations discussed honestly</span>
             </li>
             <li className="flex items-start">
-              <div className="text-amber-600 mr-2">✓</div>
-              <span>Premium pigments and state-of-the-art equipment</span>
+              <div className="mr-2 text-amber-800">✓</div>
+              <span>Colour and mapping chosen for healed results on real skin</span>
             </li>
             <li className="flex items-start">
-              <div className="text-amber-600 mr-2">✓</div>
-              <span>Personalized approach to meet your unique needs</span>
+              <div className="mr-2 text-amber-800">✓</div>
+              <span>Premium pigments and meticulous hygiene</span>
             </li>
             <li className="flex items-start">
-              <div className="text-amber-600 mr-2">✓</div>
-              <span>Relaxing and hygienic environment</span>
+              <div className="mr-2 text-amber-800">✓</div>
+              <span>Calm, appointment-led studio rhythm — unhurried appointments</span>
             </li>
             <li className="flex items-start">
-              <div className="text-amber-600 mr-2">✓</div>
-              <span>Satisfaction guaranteed</span>
+              <div className="mr-2 text-amber-800">✓</div>
+              <span>Clear aftercare so you know what to expect as colour settles</span>
             </li>
           </ul>
         </div>
       </div>
 
-      <ServiceGallery images={serviceData.gallery} title={serviceData.title} />
+      <ServiceGallery
+        images={serviceData.gallery}
+        title={serviceData.title}
+        disclaimer="Visual placeholders while we prepare photography — not shown as client before-and-after results."
+      />
 
       <ServicePricing pricing={serviceData.pricing} />
 
       <ServiceFAQ faqs={serviceData.faqs} />
+
+      <Section tone="ivory" spacing="compact">
+        <Container className="max-w-3xl">
+          <h2 className="font-heading text-2xl tracking-tight text-luxury-charcoal">Further reading</h2>
+          <p className="mt-3 text-base leading-relaxed text-stone-600">
+            Straightforward explainers on semi-permanent makeup — helpful before your consultation in Telford.
+          </p>
+          <ul className="mt-6 space-y-3 text-base leading-relaxed text-stone-700">
+            <li>
+              <Link
+                href="/blog/how-long-do-powder-brows-last"
+                className="font-medium text-luxury-charcoal underline-offset-4 hover:underline"
+              >
+                How long do powder brows last?
+              </Link>
+              <span className="text-stone-500"> — what influences fade and refresh timing.</span>
+            </li>
+            <li>
+              <Link
+                href="/blog/powder-brows-vs-microblading"
+                className="font-medium text-luxury-charcoal underline-offset-4 hover:underline"
+              >
+                Powder brows vs microblading
+              </Link>
+              <span className="text-stone-500"> — technique, healing, skin fit.</span>
+            </li>
+            <li>
+              <Link
+                href="/blog/best-pmu-for-mature-skin"
+                className="font-medium text-luxury-charcoal underline-offset-4 hover:underline"
+              >
+                PMU and mature skin
+              </Link>
+              <span className="text-stone-500"> — gentle realism.</span>
+            </li>
+          </ul>
+          <p className="mt-6 text-sm text-stone-500">
+            <Link href="/blog" className="font-medium text-luxury-charcoal underline-offset-4 hover:underline">
+              All journal articles
+            </Link>
+          </p>
+        </Container>
+      </Section>
 
       <ServiceTestimonials testimonials={serviceData.testimonials} />
 
@@ -163,19 +226,20 @@ export default async function SemiPermanentMakeupPage() {
           <ProcedureReviews
             procedureName={serviceData.title}
             reviews={reviews}
-            heading={`Reviews for ${serviceData.title} (from admin)`}
+            heading="Reviews shared by clients"
             variant="panel"
           />
-          <GoogleReviews heading="Google reviews" />
+          <GoogleReviews payload={googlePayload} heading="Google reviews" />
         </div>
       </section>
 
       <div className="mt-16 text-center">
-        <h2 className="text-2xl font-bold mb-6 font-heading">Ready to Experience {serviceData.title}?</h2>
+        <h2 className="text-2xl font-bold mb-6 font-heading">Ready to plan your brows together?</h2>
         <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
-          Book Your Appointment
+          Book Free Consultation
         </BooksyBookButton>
       </div>
     </div>
+    </>
   )
 }

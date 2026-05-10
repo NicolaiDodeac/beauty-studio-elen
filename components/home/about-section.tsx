@@ -10,7 +10,7 @@ export default function AboutSection() {
         <div className="relative rounded-xl overflow-hidden h-[500px]">
           <Image
             src="/images/about/Elen.png"
-            alt="Elen at work — Elen.MakeUp.Telford"
+            alt="Elen at work — ELEN Makeup Telford"
             fill
             className="object-cover"
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -19,27 +19,27 @@ export default function AboutSection() {
 
         <div>
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6 font-heading">
-            About Elen.MakeUp.Telford
+            About ELEN Makeup Telford
           </h2>
           <p className="text-lg text-gray-600 mb-4">
-            Founded with a passion for enhancing natural beauty, Elen.MakeUp.Telford has been dedicated to helping
-            clients look and feel their best through premium beauty services and personalized care.
+            A calm, appointment-led studio in Telford — specialising in soft powder brows and natural semi-permanent
+            makeup for women who want elegant, low-maintenance polish.
           </p>
           <p className="text-lg text-gray-600 mb-4">
-            Elen is a certified professional who stays up-to-date with the latest techniques and trends to provide you
-            with exceptional results in semi-permanent makeup and eyelash extensions.
+            Elen combines precise brow mapping with a gentle, luxury-feel experience — so you feel heard, comfortable,
+            and confident in your healed results.
           </p>
           <p className="text-lg text-gray-600 mb-8">
-            We believe that beauty treatments should be a relaxing and enjoyable experience, which is why we've created
-            a welcoming environment where you can unwind and be pampered.
+            Whether you&apos;re new to PMU or refining previous work, every treatment plan starts with a consultation and
+            honest, expert guidance.
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Button asChild variant="outline" className="border-amber-600 text-amber-600 hover:bg-amber-50">
-              <Link href="/about">Learn More About Elen</Link>
+            <Button asChild variant="outline" className="border-stone-400 text-stone-800 hover:bg-stone-100">
+              <Link href="/about">Meet Elen</Link>
             </Button>
             <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-              Book an Appointment
+              Book Free Consultation
             </BooksyBookButton>
           </div>
         </div>

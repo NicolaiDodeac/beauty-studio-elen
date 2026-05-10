@@ -56,7 +56,7 @@ export default function LatestBlog() {
             <CardFooter>
               <Link
                 href={`/blog/${post.slug}`}
-                className="text-pink-600 hover:text-pink-800 font-medium flex items-center"
+                className="text-amber-900/90 hover:text-amber-950 font-medium flex items-center"
               >
                 Read more <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -66,7 +66,7 @@ export default function LatestBlog() {
       </div>
 
       <div className="text-center mt-12">
-        <Link href="/blog" className="text-pink-600 hover:text-pink-800 font-medium inline-flex items-center">
+        <Link href="/blog" className="text-amber-900/90 hover:text-amber-950 font-medium inline-flex items-center">
           View all articles <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </div>

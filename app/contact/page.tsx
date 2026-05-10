@@ -8,10 +8,9 @@ import { Button } from "@/components/ui/button"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
 
 export const metadata: Metadata = {
-  title: "Contact Us | Elen.MakeUp.Telford",
+  title: "Contact",
   description:
-    "Get in touch with Elen.MakeUp.Telford for appointments, inquiries, or questions about our beauty services.",
-  keywords: "contact, beauty studio, Elen.MakeUp.Telford, appointment, inquiry",
+    "Contact ELEN Makeup Telford — powder brows, PMU, and lash extensions. WhatsApp, phone, or message us to book your free consultation.",
 }
 
 export default function ContactPage() {

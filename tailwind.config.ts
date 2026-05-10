@@ -52,6 +52,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        luxury: {
+          ivory: "hsl(42 36% 97%)",
+          champagne: "hsl(38 28% 92%)",
+          linen: "hsl(35 22% 89%)",
+          charcoal: "hsl(24 12% 16%)",
+          espresso: "hsl(22 14% 20%)",
+          cream: "hsl(43 38% 96%)",
+          mist: "hsl(33 15% 72%)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-montserrat)"],

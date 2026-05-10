@@ -7,6 +7,7 @@ import Footer from "@/components/layout/footer"
 import { BooksyWidget } from "@/components/booking/booksy-widget"
 import FloatingContactButtons from "@/components/ui-elements/floating-contact-buttons"
 import { ThemeProvider } from "@/components/theme-provider"
+import { buildRootMetadataPartial } from "@/lib/seo/metadata"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -18,13 +19,7 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
-export const metadata: Metadata = {
-  title: "Elen.MakeUp.Telford | Professional Beauty Services",
-  description:
-    "Premium beauty services including semi-permanent makeup, eyelash extensions, and more. Book your appointment today.",
-  keywords: "beauty studio, semi-permanent makeup, eyelash extensions, beauty services, Telford",
-    generator: 'v0.dev'
-}
+export const metadata: Metadata = buildRootMetadataPartial()
 
 export default function RootLayout({
   children,

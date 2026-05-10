@@ -20,6 +20,11 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        /** Marketing primary: warm charcoal / espresso, ivory text — use with BooksyBookButton or Link asChild */
+        cta: "bg-luxury-charcoal text-luxury-cream shadow-sm hover:bg-luxury-espresso focus-visible:ring-luxury-mist/40",
+        /** Marketing secondary: ivory / transparent feel, soft border */
+        ctaOutline:
+          "border border-stone-300/90 bg-luxury-ivory/70 text-luxury-charcoal hover:bg-luxury-champagne focus-visible:ring-stone-400/40",
       },
       size: {
         default: "h-10 px-4 py-2",

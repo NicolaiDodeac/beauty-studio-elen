@@ -35,7 +35,9 @@ export async function getGoogleReviews(): Promise<GoogleReviewsPayload | null> {
   const result = data?.result
   const placeName = (result?.name || "Google").toString()
   const placeUrl = (result?.url || "").toString()
-  const reviews = Array.isArray(result?.reviews) ? (result.reviews as GoogleReview[]) : []
+  const raw = Array.isArray(result?.reviews) ? (result.reviews as GoogleReview[]) : []
+  /** Newest first (Places may already sort with reviews_sort; sort locally as backup) */
+  const reviews = [...raw].sort((a, b) => (b.time ?? 0) - (a.time ?? 0))
 
   if (!placeUrl) return null
 

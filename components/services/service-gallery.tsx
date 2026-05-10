@@ -7,14 +7,17 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 interface ServiceGalleryProps {
   images: string[]
   title: string
+  /** Shown when images are placeholder or not yet final — avoids implying they are client before/afters */
+  disclaimer?: string
 }
 
-export default function ServiceGallery({ images, title }: ServiceGalleryProps) {
+export default function ServiceGallery({ images, title, disclaimer }: ServiceGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
 
   return (
     <section className="my-16">
-      <h2 className="text-2xl font-bold mb-6 font-heading">Gallery</h2>
+      <h2 className={`text-2xl font-bold font-heading ${disclaimer ? "mb-2" : "mb-6"}`}>Gallery</h2>
+      {disclaimer ? <p className="mb-6 text-sm leading-relaxed text-stone-500">{disclaimer}</p> : null}
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {images.map((image, index) => (
@@ -28,6 +31,7 @@ export default function ServiceGallery({ images, title }: ServiceGalleryProps) {
               alt={`${title} example ${index + 1}`}
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 50vw, 33vw"
             />
           </div>
         ))}
@@ -37,7 +41,13 @@ export default function ServiceGallery({ images, title }: ServiceGalleryProps) {
         <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
           <div className="relative w-full h-[80vh]">
             {selectedImage && (
-              <Image src={selectedImage || "/placeholder.svg"} alt={title} fill className="object-contain" />
+              <Image
+                src={selectedImage || "/placeholder.svg"}
+                alt={title}
+                fill
+                className="object-contain"
+                sizes="100vw"
+              />
             )}
           </div>
         </DialogContent>

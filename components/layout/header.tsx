@@ -9,10 +9,9 @@ import { SITE_LOGO_ALT, SITE_LOGO_HEADER_PX } from "@/lib/site-logo"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Semi-Permanent Makeup", href: "/semi-permanent-makeup" },
-  { name: "Eyelash Extensions", href: "/eyelash-extensions" },
-  { name: "Blog", href: "/blog" },
+  { name: "Powder Brows", href: "/powder-brows-telford" },
   { name: "About", href: "/about" },
+  { name: "Journal", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ]
 
@@ -56,7 +55,7 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            Book Appointment
+            Book Free Consultation
           </BooksyBookButton>
         </div>
       </nav>
@@ -101,7 +100,7 @@ export default function Header() {
                       className="w-full bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      Book Appointment
+                      Book Free Consultation
                     </BooksyBookButton>
                   </div>
                 </div>

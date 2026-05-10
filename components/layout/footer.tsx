@@ -1,9 +1,10 @@
 import Link from "next/link"
-import { Instagram, Facebook } from "lucide-react"
+import { Instagram } from "lucide-react"
 import { SiteLogoMark } from "@/components/layout/site-logo-mark"
 import { WhatsAppMark } from "@/components/ui-elements/whatsapp-mark"
 import { SITE_LOGO_ALT, SITE_LOGO_FOOTER_PX } from "@/lib/site-logo"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
+import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 
 export default function Footer() {
   return (
@@ -19,13 +20,14 @@ export default function Footer() {
             <span className="sr-only">WhatsApp</span>
             <WhatsAppMark className="h-6 w-6" />
           </Link>
-          <Link href="https://instagram.com" className="text-gray-400 hover:text-amber-600">
-            <span className="sr-only">Instagram</span>
+          <Link
+            href={SITE_INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-400 hover:text-amber-800"
+          >
+            <span className="sr-only">Instagram @elenmakeuptelford</span>
             <Instagram className="h-6 w-6" />
-          </Link>
-          <Link href="https://facebook.com" className="text-gray-400 hover:text-amber-600">
-            <span className="sr-only">Facebook</span>
-            <Facebook className="h-6 w-6" />
           </Link>
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
@@ -37,20 +39,38 @@ export default function Footer() {
               className="mr-4"
             />
             <p className="text-center text-xs leading-5 text-gray-500">
-              &copy; {new Date().getFullYear()} Elen.MakeUp.Telford. All rights reserved.
+              &copy; {new Date().getFullYear()} ELEN Makeup Telford. All rights reserved.
             </p>
           </div>
-          <div className="mt-4 flex justify-center md:justify-start space-x-6">
+          <nav aria-label="Quick links" className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 md:justify-start">
+            <Link href="/about" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              About
+            </Link>
+            <Link href="/powder-brows-telford" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Powder Brows
+            </Link>
+            <Link href="/services" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Services
+            </Link>
+            <Link href="/semi-permanent-makeup" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Semi-Permanent Makeup
+            </Link>
+            <Link href="/eyelash-extensions" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Eyelash Extensions
+            </Link>
+            <Link href="/blog" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Journal
+            </Link>
+            <Link href="/contact" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
+              Contact Us
+            </Link>
             <Link href="/privacy-policy" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
               Privacy Policy
             </Link>
             <Link href="/terms" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
               Terms of Service
             </Link>
-            <Link href="/contact" className="text-xs leading-5 text-gray-500 hover:text-amber-600">
-              Contact Us
-            </Link>
-          </div>
+          </nav>
         </div>
       </div>
     </footer>

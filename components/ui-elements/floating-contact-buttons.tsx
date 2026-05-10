@@ -5,6 +5,7 @@ import Link from "next/link"
 import { MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
+import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 import { WhatsAppMark } from "@/components/ui-elements/whatsapp-mark"
 import { cn } from "@/lib/utils"
 
@@ -31,8 +32,12 @@ export default function FloatingContactButtons() {
               <span className="sr-only">WhatsApp</span>
             </Link>
           </Button>
-          <Button asChild className={cn(fabSecondary, "bg-pink-500 hover:bg-pink-600 text-white")} size="icon">
-            <Link href="https://instagram.com/elenmakeuptelford" target="_blank" rel="noopener noreferrer">
+          <Button
+            asChild
+            className={cn(fabSecondary, "bg-stone-700 hover:bg-stone-800 text-white border-0")}
+            size="icon"
+          >
+            <Link href={SITE_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
