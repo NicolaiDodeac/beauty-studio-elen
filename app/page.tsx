@@ -14,7 +14,7 @@ import { TrustStrip } from "@/components/marketing/trust-strip"
 import { WhyChooseElen } from "@/components/marketing/why-choose-elen"
 import { JsonLd } from "@/components/seo/json-ld"
 import { HOME_FAQ } from "@/lib/marketing/home-faq"
-import { PMU_RESULTS_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
+import { PMU_HOME_GALLERY_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
 import { buildPageMetadata } from "@/lib/seo/metadata"
 import { beautySalonLocalBusinessSchema, faqPageSchema } from "@/lib/seo/schema"
 
@@ -83,10 +83,12 @@ export default function Home() {
 
       <ResultsPreviewGallery
         title="A Soft Preview of Natural Results"
-        subtitle="Explore real client transformations and see how subtle enhancements can make everyday beauty feel effortless."
-        items={PMU_RESULTS_PREVIEW_ITEMS}
+        subtitle="Explore the style of soft, natural results we’re preparing to showcase — real client transformations will appear here once photography is approved."
+        note="These tiles are placeholders until consent-led shoots land; see Powder Brows for full treatment detail and booking."
+        items={PMU_HOME_GALLERY_PREVIEW_ITEMS}
         resultsHref="/powder-brows-telford#gallery"
         ctaLabel="Explore Powder Brows"
+        compactPlaceholders
       />
 
       <WhyChooseElen

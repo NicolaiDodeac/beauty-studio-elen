@@ -23,6 +23,8 @@ export type GoogleReviewsDisplayProps = {
   showTitleRow?: boolean
   /** Explainer under title — off when parent section already sets context */
   showIntroLine?: boolean
+  /** When set, replaces the default “Latest reviews first…” intro */
+  introLineText?: string
   className?: string
   /** First paint batch — modest on mobile; scroll loads more */
   initialVisible?: number
@@ -36,6 +38,7 @@ export function GoogleReviewsDisplay({
   heading = "Google reviews",
   showTitleRow = true,
   showIntroLine = true,
+  introLineText,
   className,
   initialVisible = 3,
   batchSize = 3,
@@ -112,16 +115,20 @@ export function GoogleReviewsDisplay({
 
       {showIntroLine ? (
         <p className="mb-5 max-w-2xl text-xs leading-relaxed text-stone-500 sm:mb-6 sm:text-sm">
-          Latest reviews first.{" "}
-          <Link
-            href={placeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="font-medium text-stone-600 underline underline-offset-2 hover:text-stone-800"
-          >
-            Google
-          </Link>{" "}
-          has the full list.
+          {introLineText ?? (
+            <>
+              Latest reviews first.{" "}
+              <Link
+                href={placeUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-stone-600 underline underline-offset-2 hover:text-stone-800"
+              >
+                Google
+              </Link>{" "}
+              has the full list.
+            </>
+          )}
         </p>
       ) : null}
 

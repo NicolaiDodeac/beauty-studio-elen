@@ -10,6 +10,8 @@ export type GoogleReviewsProps = {
   showTitleRow?: boolean
   /** Extra line under title — turn off when the parent section already explains context */
   showIntroLine?: boolean
+  /** Custom intro under the title */
+  introLineText?: string
   className?: string
   initialVisible?: number
   batchSize?: number
@@ -24,6 +26,7 @@ export default async function GoogleReviews({
   payload: payloadProp,
   showTitleRow = true,
   showIntroLine = true,
+  introLineText,
   className,
   initialVisible,
   batchSize,
@@ -40,6 +43,7 @@ export default async function GoogleReviews({
       heading={heading ?? "Google reviews"}
       showTitleRow={showTitleRow}
       showIntroLine={showIntroLine}
+      introLineText={introLineText}
       className={cn(className)}
       initialVisible={initialVisible}
       batchSize={batchSize}

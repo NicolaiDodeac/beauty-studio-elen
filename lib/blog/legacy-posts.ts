@@ -1,3 +1,7 @@
+/**
+ * Legacy journal posts — each entry still uses `/placeholder.svg…` until replaced.
+ * Exact hero briefs per slug are tracked in `docs/media-replacement-checklist.md` (legacy articles section).
+ */
 import type { LegacyBlogPost } from "@/lib/blog/types"
 
 export const legacyBlogPosts: LegacyBlogPost[] = [

@@ -14,6 +14,7 @@ export const articlePowderBrowHealingDayByDay: SeoArticleBundle = {
     publishedIso: "2026-05-02T09:00:00.000Z",
     category: "Powder brows & PMU",
     author: "Elen",
+    /** MEDIA TODO — 1200×630: gentle aftercare / healing vibe — calm editorial (serum brush, soft towel, studio still life); not clinical stock. */
     image: "/placeholder.svg?height=630&width=1200",
   },
   introBlocks: [

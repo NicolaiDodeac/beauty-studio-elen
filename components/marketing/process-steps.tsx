@@ -13,6 +13,8 @@ export type ProcessStepsProps = {
   subtitle?: string
   steps: readonly ProcessStep[]
   depositNote: string
+  /** Optional anchor id for in-page links */
+  sectionId?: string
 }
 
 export function ProcessSteps({
@@ -21,9 +23,10 @@ export function ProcessSteps({
   subtitle,
   steps,
   depositNote,
+  sectionId,
 }: ProcessStepsProps) {
   return (
-    <Section tone="champagne">
+    <Section id={sectionId} tone="champagne">
       <Container className="space-y-10">
         <SectionHeading eyebrow={eyebrow} title={title} subtitle={subtitle} align="center" className="mx-auto" />
 

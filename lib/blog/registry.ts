@@ -1,3 +1,7 @@
+/**
+ * Blog card resolution — `image` on each card comes from SEO article `meta.image` or legacy `post.image`
+ * (often placeholder until assets ship). Replacement briefs: article files + `docs/media-replacement-checklist.md`.
+ */
 import { seoArticlesBySlug, seoArticleSlugs } from "@/lib/blog/articles/registry"
 import { legacyBlogPosts } from "@/lib/blog/legacy-posts"
 import type { BlogPostCard, LegacyBlogPost, SeoArticleBundle } from "@/lib/blog/types"

@@ -22,6 +22,11 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <div className="mb-16 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        {/*
+          MEDIA TODO — /images/about/Elen.png:
+          Replace/confirm professional portrait (soft neutral styling/background, warm expression, clean studio or neutral wall,
+          light tasteful colour grade — no heavy filters). Must align with AboutElenPreview + checklist row “About”.
+        */}
         <div className="relative h-[500px] overflow-hidden rounded-xl">
           <Image
             src="/images/about/Elen.png"

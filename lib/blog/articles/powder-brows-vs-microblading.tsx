@@ -14,6 +14,7 @@ export const articlePowderBrowsVsMicroblading: SeoArticleBundle = {
     publishedIso: "2026-05-08T09:00:00.000Z",
     category: "Powder brows & PMU",
     author: "Elen",
+    /** MEDIA TODO — 1200×630 hero/OG: split-style visual — soft powder brow result vs natural brow / mapping detail (illustrative editorial; consent if identifiable). */
     image: "/placeholder.svg?height=630&width=1200",
   },
   introBlocks: [

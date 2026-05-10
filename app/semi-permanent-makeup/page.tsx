@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
+import { ServiceHeroPlaceholder } from "@/components/marketing/branded-placeholder-media"
 import { Container } from "@/components/marketing/container"
 import { Section } from "@/components/marketing/section"
 import { JsonLd } from "@/components/seo/json-ld"
@@ -15,6 +16,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata"
 import { breadcrumbListSchema, serviceSchema } from "@/lib/seo/schema"
 import { getGoogleReviews } from "@/lib/google-reviews"
 import { getProcedureReviews } from "@/lib/procedure-reviews"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
 const SEMI_PAGE_DESCRIPTION =
   "Natural luxury powder brows, ombre brows, and refined PMU in Telford — tailored mapping and soft healed results. Book a free consultation."
@@ -25,6 +27,11 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/semi-permanent-makeup",
 })
 
+/*
+ * MEDIA PLACEHOLDERS — `/semi-permanent-makeup`
+ * Hero (`serviceData.image`): Natural PMU storytelling — healed brow / soft lip / subtle liner examples that match services offered (all consented). Avoid generic beauty stock.
+ * Gallery (`serviceData.gallery` ×6): Consented healed-detail shots per modality you actively market (brow powder heal, lip blush heal, liner subtle); assign slot meanings in `docs/media-replacement-checklist.md`.
+ */
 // Semi-permanent makeup service data
 const serviceData = {
   title: "Semi-Permanent Makeup",
@@ -103,21 +110,25 @@ export default async function SemiPermanentMakeupPage() {
       />
       <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
           {serviceData.title}
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl">{serviceData.description}</p>
       </div>
 
-      <div className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-12">
-        <Image
-          src={serviceData.image || "/placeholder.svg"}
-          alt="Semi-permanent makeup and powder brows — ELEN Makeup Telford, Shropshire"
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      {isPlaceholderMediaSrc(serviceData.image) ? (
+        <ServiceHeroPlaceholder className="mb-12" />
+      ) : (
+        <div className="relative mb-12 h-[400px] w-full overflow-hidden rounded-xl md:h-[500px]">
+          <Image
+            src={serviceData.image || "/placeholder.svg"}
+            alt="Semi-permanent makeup and powder brows — ELEN Makeup Telford, Shropshire"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
@@ -229,7 +240,11 @@ export default async function SemiPermanentMakeupPage() {
             heading="Reviews shared by clients"
             variant="panel"
           />
-          <GoogleReviews payload={googlePayload} heading="Google reviews" />
+          <GoogleReviews
+            payload={googlePayload}
+            heading="Client reviews from Google"
+            introLineText="Feedback here reflects Google’s snapshot of our Business Profile — reviews may mention brows, lashes, or other treatments. For dedicated PMU conversations, Booksy is often where brow clients leave detailed notes."
+          />
         </div>
       </section>
 

@@ -2,7 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
+import { JournalCardVisual } from "@/components/marketing/branded-placeholder-media"
 import type { BlogPostCard } from "@/lib/blog/types"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
 type RelatedPostsProps = {
   posts: BlogPostCard[]
@@ -19,14 +21,18 @@ export default function RelatedPosts({ posts, title = "Related articles" }: Rela
             key={post.slug}
             className="flex flex-col overflow-hidden rounded-xl border border-stone-200/90 bg-white shadow-sm ring-1 ring-stone-900/[0.03] transition-shadow hover:shadow-md"
           >
-            <div className="relative aspect-[16/10] w-full bg-luxury-champagne">
-              <Image
-                src={post.image || "/placeholder.svg"}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
+            <div className="relative aspect-[16/10] w-full overflow-hidden bg-luxury-champagne">
+              {isPlaceholderMediaSrc(post.image) ? (
+                <JournalCardVisual className="h-full min-h-[10rem]" />
+              ) : (
+                <Image
+                  src={post.image || "/placeholder.svg"}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              )}
             </div>
             <div className="flex flex-1 flex-col px-5 pb-5 pt-5">
               <p className="text-xs text-stone-500">{post.dateLabel}</p>

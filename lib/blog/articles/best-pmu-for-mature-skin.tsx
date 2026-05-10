@@ -14,6 +14,7 @@ export const articleBestPmuForMatureSkin: SeoArticleBundle = {
     publishedIso: "2026-04-28T09:00:00.000Z",
     category: "Powder brows & PMU",
     author: "Elen",
+    /** MEDIA TODO — 1200×630: mature client brow result (consented) OR tasteful neutral editorial — never fake before/after. */
     image: "/placeholder.svg?height=630&width=1200",
   },
   introBlocks: [

@@ -14,6 +14,7 @@ export const articleHowLongPowderBrowsLast: SeoArticleBundle = {
     publishedIso: "2026-05-06T09:00:00.000Z",
     category: "Powder brows & PMU",
     author: "Elen",
+    /** MEDIA TODO — 1200×630: healed brow close-up, soft natural finish (daylight or soft studio; consent). */
     image: "/placeholder.svg?height=630&width=1200",
   },
   introBlocks: [

@@ -1,13 +1,21 @@
 import Link from "next/link"
 import Image from "next/image"
 import type { Metadata } from "next"
+import { JournalCardVisual } from "@/components/marketing/branded-placeholder-media"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Card, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import { buildPageMetadata } from "@/lib/seo/metadata"
 import { breadcrumbListSchema } from "@/lib/seo/schema"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
+/*
+ * SERVICE CARD IMAGES — `/services`
+ * permanent-makeup → Powder/healed PMU mood consistent with `/powder-brows-telford` offer (consented).
+ * eyelash-extensions → Macro lash set photo (consented).
+ * facial-treatments → Real studio facial/treatment setup OR retire card/route if facials are not an active booking focus (confirm with Elen).
+ */
 const services = [
   {
     id: "permanent-makeup",
@@ -54,25 +62,28 @@ export default function ServicesPage() {
           { name: "Services", path: "/services" },
         ])}
       />
-    <div className="max-w-7xl mx-auto px-6 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">Services</h1>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Elegant, natural results in Telford — led by Elen, with a calm studio experience from consultation to healed
-          results.
+    <div className="mx-auto max-w-7xl px-6 py-12">
+      <div className="mb-12 text-center">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">Services</h1>
+        <p className="mx-auto max-w-3xl text-xl text-gray-600">
+          Elegant, natural results in Telford — led by Elen, with a calm studio experience from consultation through care.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {services.map((service) => (
           <Card key={service.id} className="overflow-hidden hover:shadow-lg transition-shadow border border-stone-100">
-            <div className="aspect-w-16 aspect-h-9 relative h-48">
-              <Image
-                src={service.image || "/placeholder.svg"}
-                alt={`${service.title} at ELEN Makeup Telford`}
-                fill
-                className="object-cover"
-              />
+            <div className="relative aspect-w-16 aspect-h-9 h-48 overflow-hidden">
+              {isPlaceholderMediaSrc(service.image) ? (
+                <JournalCardVisual className="h-full min-h-[12rem]" />
+              ) : (
+                <Image
+                  src={service.image || "/placeholder.svg"}
+                  alt={`${service.title} at ELEN Makeup Telford`}
+                  fill
+                  className="object-cover"
+                />
+              )}
             </div>
             <CardHeader>
               <CardTitle className="font-heading">{service.title}</CardTitle>
@@ -108,7 +119,7 @@ export default function ServicesPage() {
           pressure, just expert guidance.
         </p>
         <Button asChild size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-          <Link href="/contact">Get in touch</Link>
+          <Link href="/contact">Book Free Consultation</Link>
         </Button>
       </div>
     </div>

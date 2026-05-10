@@ -1,10 +1,15 @@
+/**
+ * Journal listing — card thumbnails use `JournalCardVisual` until each post has a real 1200×630-style hero (see checklist).
+ */
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
 
+import { JournalCardVisual } from "@/components/marketing/branded-placeholder-media"
 import { Container } from "@/components/marketing/container"
 import { Section } from "@/components/marketing/section"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 import { getAllBlogPostCards } from "@/lib/blog/registry"
 import { buildPageMetadata } from "@/lib/seo/metadata"
 
@@ -36,14 +41,18 @@ export default function BlogPage() {
           {posts.map((post) => (
             <li key={post.slug}>
               <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-sm ring-1 ring-stone-900/[0.03] transition-shadow hover:shadow-md">
-                <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] bg-luxury-champagne">
-                  <Image
-                    src={post.image || "/placeholder.svg"}
-                    alt=""
-                    fill
-                    className="object-cover transition-opacity group-hover:opacity-[0.97]"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
+                <Link href={`/blog/${post.slug}`} className="relative block aspect-[16/10] overflow-hidden bg-luxury-champagne">
+                  {isPlaceholderMediaSrc(post.image) ? (
+                    <JournalCardVisual className="h-full min-h-[11rem] transition-opacity group-hover:opacity-[0.97]" />
+                  ) : (
+                    <Image
+                      src={post.image || "/placeholder.svg"}
+                      alt=""
+                      fill
+                      className="object-cover transition-opacity group-hover:opacity-[0.97]"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  )}
                 </Link>
                 <div className="flex flex-1 flex-col px-6 pb-7 pt-6 sm:px-7">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-stone-500">

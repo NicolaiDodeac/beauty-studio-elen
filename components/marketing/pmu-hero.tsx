@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
+import { DEFAULT_PMU_HERO_IMAGE } from "@/lib/marketing/hero-media"
 import { BooksyReviewsSummary } from "@/components/marketing/booksy-reviews-summary"
 import { Container } from "@/components/marketing/container"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
@@ -29,8 +30,8 @@ export function PMUHero({
   secondaryCta,
   secondaryHref,
   trustLine,
-  imageSrc = "/images/hero/image.png",
-  imageAlt = "ELEN Makeup studio — soft luxury beauty in Telford",
+  imageSrc = DEFAULT_PMU_HERO_IMAGE,
+  imageAlt = "ELEN Makeup treatment space in Telford — relaxed studio setting",
   showBooksyReviewProof = false,
 }: PMUHeroProps) {
   return (
@@ -63,14 +64,19 @@ export function PMUHero({
           </div>
 
           <div className="relative mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none">
-            {/* TODO: Replace with real ELEN client result or Elen working/mapping brows. Avoid glamour stock-style images. */}
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-stone-200/90 shadow-lg shadow-stone-900/5">
+            {/*
+              MEDIA TODO — see `lib/marketing/hero-media.ts`:
+              Replace with real ELEN healed powder brow close-up OR Elen mapping brows OR Elen working with client (consented).
+              Avoid: red lipstick, rose/fashion shot, stock model, heavy glam, brows not focal.
+              Ideal: vertical-friendly portrait, neutral tones, natural skin texture, brow-forward, calm premium feel.
+            */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-stone-200/90 shadow-lg shadow-stone-900/5 ring-1 ring-stone-900/[0.03]">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
                 fill
                 priority
-                className="object-cover animate-fade-in motion-reduce:animate-none md:transition-transform md:duration-500 md:ease-out md:hover:scale-[1.02]"
+                className="object-cover object-[50%_36%] animate-fade-in motion-reduce:animate-none sm:object-[50%_34%]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>

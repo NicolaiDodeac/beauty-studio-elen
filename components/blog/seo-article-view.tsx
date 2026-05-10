@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
 
+import { EditorialHeroPlaceholder } from "@/components/marketing/branded-placeholder-media"
 import { ArticleBlocks } from "@/components/blog/article-blocks"
 import { ArticleReadingProgress } from "@/components/blog/article-reading-progress"
 import RelatedPosts from "@/components/blog/related-posts"
@@ -9,6 +10,7 @@ import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import { Container } from "@/components/marketing/container"
 import { getRelatedCardsForSeoArticle } from "@/lib/blog/registry"
 import type { SeoArticleBundle } from "@/lib/blog/types"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 import { cn } from "@/lib/utils"
 
 function formatHeroDate(iso: string): string {
@@ -51,16 +53,20 @@ export function SeoArticleView({ article }: { article: SeoArticleBundle }) {
             </p>
           </header>
 
-          <div className="relative mt-10 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-stone-200/90 bg-luxury-champagne shadow-sm sm:aspect-[2/1]">
-            <Image
-              src={meta.image}
-              alt={`Illustration for: ${meta.title}`}
-              fill
-              className="object-cover opacity-95"
-              sizes="(max-width: 768px) 100vw, 768px"
-              priority
-            />
-          </div>
+          {isPlaceholderMediaSrc(meta.image) ? (
+            <EditorialHeroPlaceholder label={meta.category} className="mt-10" />
+          ) : (
+            <div className="relative mt-10 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-stone-200/90 bg-luxury-champagne shadow-sm sm:aspect-[2/1]">
+              <Image
+                src={meta.image}
+                alt={`Illustration for: ${meta.title}`}
+                fill
+                className="object-cover opacity-95"
+                sizes="(max-width: 768px) 100vw, 768px"
+                priority
+              />
+            </div>
+          )}
 
           <div className="mx-auto mt-12 max-w-2xl">
             <ArticleBlocks blocks={introBlocks} className="space-y-6" />

@@ -1,4 +1,4 @@
-    import type { Metadata } from "next"
+import type { Metadata } from "next"
 import Link from "next/link"
 
 import { AboutElenPreview } from "@/components/marketing/about-elen-preview"
@@ -20,6 +20,7 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { Button } from "@/components/ui/button"
 import { PMU_RESULTS_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
 import { getGoogleReviews } from "@/lib/google-reviews"
+import { getBooksyProfileUrl } from "@/lib/reviews/review-stats"
 import { buildPageMetadata } from "@/lib/seo/metadata"
 import { breadcrumbListSchema, faqPageSchema, serviceSchema } from "@/lib/seo/schema"
 
@@ -126,7 +127,7 @@ export default async function PowderBrowsTelfordPage() {
         secondaryCta="View Results"
         secondaryHref="#gallery"
         trustLine="Free consultation first • Tailored brow mapping • Natural healed results"
-        imageAlt="Powder brows Telford — soft natural semi permanent brows, ELEN Makeup"
+        imageAlt="ELEN Makeup studio — calm brow treatment setting in Telford (hero photography updating)"
       />
 
       <TrustStrip items={TRUST_ITEMS} />
@@ -167,13 +168,15 @@ export default async function PowderBrowsTelfordPage() {
         cards={WHY_POWDER_BROWS_CARDS}
       />
 
+      {/* Gallery tiles — replacement specs live in `lib/marketing/pmu-gallery.ts` (`PMU_RESULTS_PREVIEW_ITEMS`). */}
       <ResultsPreviewGallery
         id="gallery"
-        title="Soft, natural brow results"
-        subtitle="Visual moodboard — real client photography will appear here as our studio gallery grows."
+        title="Gallery preview"
+        subtitle="Illustrative tiles for layout only — consent-led client photography will replace these when ready."
+        note="These are not presented as verified results or before-and-after proof."
         items={PMU_RESULTS_PREVIEW_ITEMS}
-        resultsHref="/semi-permanent-makeup"
-        ctaLabel="More on semi-permanent makeup"
+        resultsHref="/powder-brows-telford#powder-process"
+        ctaLabel="See the treatment process"
       />
 
       <Section tone="ivory">
@@ -228,6 +231,7 @@ export default async function PowderBrowsTelfordPage() {
       </Section>
 
       <ProcessSteps
+        sectionId="powder-process"
         eyebrow="Step by step"
         title="The powder brows process"
         subtitle="From first hello to healed, natural-looking colour."
@@ -348,14 +352,20 @@ export default async function PowderBrowsTelfordPage() {
         </Container>
       </Section>
 
-      <FAQPreview
-        title="Powder brows questions"
-        subtitle="Straight answers — your consultation is the best place for personalised detail."
-        items={POWDER_BROWS_FAQ}
-      />
-
       <Section tone="light">
-        <Container className="max-w-3xl">
+        <Container className="max-w-3xl space-y-6">
+          <p className="text-center text-sm leading-relaxed text-stone-600">
+            For the most complete and up-to-date client feedback,{" "}
+            <Link
+              href={getBooksyProfileUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-luxury-charcoal underline decoration-stone-300 underline-offset-4 transition-colors hover:decoration-luxury-charcoal"
+            >
+              view verified reviews on Booksy
+            </Link>
+            .
+          </p>
           <BooksyReviewsSummary variant="section" />
         </Container>
       </Section>
@@ -363,10 +373,20 @@ export default async function PowderBrowsTelfordPage() {
       {googlePayload?.reviews?.length ? (
         <Section tone="ivory">
           <Container className="max-w-5xl">
-            <GoogleReviews payload={googlePayload} heading="Google reviews" />
+            <GoogleReviews
+              payload={googlePayload}
+              heading="Client reviews from Google"
+              introLineText="These reviews sit on our Google Business Profile and may mention lash appointments, brows, facials, or other visits — not only powder brows. Newest shown first; the full thread lives on Google."
+            />
           </Container>
         </Section>
       ) : null}
+
+      <FAQPreview
+        title="Powder brows questions"
+        subtitle="Straight answers — your consultation is the best place for personalised detail."
+        items={POWDER_BROWS_FAQ}
+      />
 
       <FinalCTA
         headline="Curious if powder brows suit you?"

@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
+import { ServiceHeroPlaceholder } from "@/components/marketing/branded-placeholder-media"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
@@ -8,6 +9,7 @@ import ServiceFAQ from "@/components/services/service-faq"
 import ServiceTestimonials from "@/components/services/service-testimonials"
 import GoogleReviews from "@/components/reviews/google-reviews"
 import { getGoogleReviews } from "@/lib/google-reviews"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
 export const metadata: Metadata = {
   title: "Eyelash Extensions Telford",
@@ -15,6 +17,11 @@ export const metadata: Metadata = {
     "UV/LED lash extensions in Telford — custom-mapped classic, hybrid, and volume sets in a calm studio. Book a free consultation or patch test.",
 }
 
+/*
+ * MEDIA PLACEHOLDERS — `/eyelash-extensions`
+ * Hero: Authentic lash set close-up — safe eye crop; real client or demo model with consent (NOT packaged stock-lash imagery).
+ * Gallery ×6: Classic / hybrid / volume retention photos — crisp lashes, neutral background; each slot labelled in checklist.
+ */
 // Eyelash extensions service data
 const serviceData = {
   title: "Eyelash Extensions in Telford",
@@ -89,21 +96,25 @@ export default async function EyelashExtensionsPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
           {serviceData.title}
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl">{serviceData.description}</p>
       </div>
 
-      <div className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-12">
-        <Image
-          src={serviceData.image || "/placeholder.svg"}
-          alt={serviceData.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      {isPlaceholderMediaSrc(serviceData.image) ? (
+        <ServiceHeroPlaceholder className="mb-12" />
+      ) : (
+        <div className="relative mb-12 h-[400px] w-full overflow-hidden rounded-xl md:h-[500px]">
+          <Image
+            src={serviceData.image || "/placeholder.svg"}
+            alt={serviceData.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
@@ -168,7 +179,11 @@ export default async function EyelashExtensionsPage() {
 
       {googlePayload?.reviews?.length ? (
         <section className="my-16 max-w-5xl">
-          <GoogleReviews payload={googlePayload} heading="Google reviews" />
+          <GoogleReviews
+            payload={googlePayload}
+            heading="Client reviews from Google"
+            introLineText="Reviews shown here come from Google and may cover brows, lashes, or other appointments — read them as general studio feedback alongside treatment-specific guidance in your consultation."
+          />
         </section>
       ) : null}
 

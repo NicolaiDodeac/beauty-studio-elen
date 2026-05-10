@@ -24,10 +24,11 @@ export default function TermsPage() {
         Last updated: {new Date().toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
       </p>
 
-      <div className="mt-6 rounded-lg border border-amber-200/80 bg-amber-50/50 p-4 text-sm leading-relaxed text-amber-950">
+      <div className="mt-6 rounded-lg border border-stone-200/90 bg-luxury-champagne/60 p-4 text-sm leading-relaxed text-stone-700">
         <p>
-          <strong>Practical draft.</strong> These terms are intended for a typical UK beauty studio website. Please have
-          them reviewed before relying on them legally — they aim to be fair and readable, not frightening.
+          This page is provided for transparency and will be reviewed periodically as the website and booking systems
+          evolve. Legal review is recommended for your specific circumstances — these terms aim to be fair and readable for
+          visitors.
         </p>
       </div>
 

@@ -29,6 +29,11 @@ export function AboutElenPreview({
     <Section tone="ivory">
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/*
+            MEDIA TODO — imageSrc (/images/about/Elen.png):
+            Replace or confirm with professional portrait of Elen — soft neutral outfit/background, warm approachable expression,
+            clean studio or neutral backdrop, no heavy filters. Same asset supports homepage About preview + /about.
+          */}
           <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-stone-200/90 shadow-lg lg:aspect-[3/4]">
             <Image
               src={imageSrc}

@@ -16,7 +16,7 @@ import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 export const metadata: Metadata = {
   title: "Privacy Policy | ELEN Makeup Telford",
   description:
-    "How ELEN Makeup Telford collects, uses, and stores personal information — UK GDPR aligned practical draft for clients and website visitors.",
+    "How ELEN Makeup Telford collects, uses, and stores personal information — clear guidance for clients and website visitors (UK GDPR aligned).",
 }
 
 export default function PrivacyPolicyPage() {
@@ -28,10 +28,11 @@ export default function PrivacyPolicyPage() {
         Last updated: {new Date().toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" })}
       </p>
 
-      <div className="mt-6 rounded-lg border border-amber-200/80 bg-amber-50/50 p-4 text-sm leading-relaxed text-amber-950">
+      <div className="mt-6 rounded-lg border border-stone-200/90 bg-luxury-champagne/60 p-4 text-sm leading-relaxed text-stone-700">
         <p>
-          <strong>Practical draft.</strong> This policy is written for a small UK beauty business and should be reviewed
-          by a qualified professional before you rely on it for compliance. It is designed to be clear, not intimidating.
+          This page is provided for transparency and will be reviewed periodically as the website and booking systems
+          evolve. For specialist compliance advice, consult a qualified professional — this wording aims to be clear and
+          approachable for clients.
         </p>
       </div>
 

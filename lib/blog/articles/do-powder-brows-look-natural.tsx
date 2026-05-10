@@ -14,6 +14,7 @@ export const articleDoPowderBrowsLookNatural: SeoArticleBundle = {
     publishedIso: "2026-05-04T09:00:00.000Z",
     category: "Powder brows & PMU",
     author: "Elen",
+    /** MEDIA TODO — 1200×630: natural healed brow result in real daylight (believable skin texture; consent). */
     image: "/placeholder.svg?height=630&width=1200",
   },
   introBlocks: [

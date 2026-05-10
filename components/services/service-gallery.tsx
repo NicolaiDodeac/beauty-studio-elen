@@ -2,7 +2,9 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { ServiceGalleryTilePlaceholder } from "@/components/marketing/branded-placeholder-media"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
 interface ServiceGalleryProps {
   images: string[]
@@ -16,23 +18,35 @@ export default function ServiceGallery({ images, title, disclaimer }: ServiceGal
 
   return (
     <section className="my-16">
-      <h2 className={`text-2xl font-bold font-heading ${disclaimer ? "mb-2" : "mb-6"}`}>Gallery</h2>
+      <h2 className={`font-heading text-2xl tracking-tight text-luxury-charcoal ${disclaimer ? "mb-2" : "mb-6"}`}>
+        Gallery
+      </h2>
       {disclaimer ? <p className="mb-6 text-sm leading-relaxed text-stone-500">{disclaimer}</p> : null}
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {images.map((image, index) => (
           <div
             key={index}
-            className="relative aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-            onClick={() => setSelectedImage(image)}
+            className={`relative aspect-square overflow-hidden rounded-lg transition-opacity ${
+              isPlaceholderMediaSrc(image) ? "cursor-default" : "cursor-pointer hover:opacity-90"
+            }`}
+            onClick={() => {
+              if (!isPlaceholderMediaSrc(image)) setSelectedImage(image)
+            }}
+            role={isPlaceholderMediaSrc(image) ? undefined : "button"}
+            tabIndex={isPlaceholderMediaSrc(image) ? undefined : 0}
           >
-            <Image
-              src={image || "/placeholder.svg"}
-              alt={`${title} example ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 50vw, 33vw"
-            />
+            {isPlaceholderMediaSrc(image) ? (
+              <ServiceGalleryTilePlaceholder index={index} title={title} />
+            ) : (
+              <Image
+                src={image || "/placeholder.svg"}
+                alt={`${title} example ${index + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+            )}
           </div>
         ))}
       </div>

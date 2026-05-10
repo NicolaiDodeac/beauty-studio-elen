@@ -1,3 +1,7 @@
+/**
+ * Article route — hero imagery defined per article (`meta.image` / legacy `post.image`).
+ * Replacement briefs: JSDoc on each article file + `docs/media-replacement-checklist.md`.
+ */
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 

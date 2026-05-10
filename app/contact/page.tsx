@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Book a Free Consultation",
   description:
     "Contact ELEN Makeup Telford — powder brows, PMU, and lash extensions. WhatsApp, phone, or message us to book your free consultation.",
 }
@@ -17,11 +17,12 @@ export default function ContactPage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">Contact Us</h1>
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">
+          Book a Free Consultation
+        </h1>
         <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-          Have questions or ready to book?{" "}
-          <span className="font-medium text-gray-800">Message us on WhatsApp</span> for the fastest reply, or use the
-          form if you prefer email.
+          Have a question or ready to plan your treatment? Contact ELEN Makeup Telford or book your free consultation
+          online.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Button

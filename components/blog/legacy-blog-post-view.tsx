@@ -2,11 +2,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Calendar, MessageSquare, User } from "lucide-react"
 
+import { EditorialHeroPlaceholder } from "@/components/marketing/branded-placeholder-media"
 import BlogCommentForm from "@/components/blog/blog-comment-form"
 import RelatedPosts from "@/components/blog/related-posts"
 import { Container } from "@/components/marketing/container"
 import { legacyBlogPosts } from "@/lib/blog/legacy-posts"
 import type { BlogPostCard, LegacyBlogPost } from "@/lib/blog/types"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
 
 function legacyToCards(exclude: LegacyBlogPost): BlogPostCard[] {
   return legacyBlogPosts
@@ -59,16 +61,20 @@ export function LegacyBlogPostView({ post }: { post: LegacyBlogPost }) {
           </div>
         </header>
 
-        <div className="relative mt-10 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-stone-200/90 bg-luxury-champagne shadow-sm sm:aspect-[2/1]">
-          <Image
-            src={post.image || "/placeholder.svg"}
-            alt={`Cover image for article: ${post.title}`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 768px"
-            priority
-          />
-        </div>
+        {isPlaceholderMediaSrc(post.image) ? (
+          <EditorialHeroPlaceholder label={post.category} className="mt-10" />
+        ) : (
+          <div className="relative mt-10 aspect-[21/9] w-full overflow-hidden rounded-2xl border border-stone-200/90 bg-luxury-champagne shadow-sm sm:aspect-[2/1]">
+            <Image
+              src={post.image || "/placeholder.svg"}
+              alt={`Cover image for article: ${post.title}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 768px"
+              priority
+            />
+          </div>
+        )}
 
         <div
           className="prose prose-stone mx-auto mt-12 max-w-2xl prose-headings:font-heading prose-headings:text-luxury-charcoal prose-p:leading-[1.75] prose-li:leading-relaxed prose-a:text-luxury-charcoal prose-a:underline-offset-4"
