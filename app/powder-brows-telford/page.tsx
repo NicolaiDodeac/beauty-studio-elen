@@ -172,14 +172,14 @@ export default async function PowderBrowsTelfordPage() {
       <ResultsPreviewGallery
         id="gallery"
         title="Results gallery"
-        subtitle="A soft preview of the powder brow style — open more to see before, first session, and healed."
+        subtitle="Soft powder brow style — including a full before-to-healed journey below."
         note="Colour looks stronger right after treatment, then softens as brows heal."
         items={PMU_RESULTS_PREVIEW_ITEMS}
         journeySets={PMU_RESULTS_JOURNEY_SETS}
         resultsHref="/powder-brows-telford#powder-process"
         ctaLabel="See the treatment process"
-        expandLabel="Show before & healed journeys"
-        collapseLabel="Hide journeys"
+        expandLabel="Show more healing journeys"
+        collapseLabel="Hide extra journeys"
       />
 
       <Section tone="ivory">

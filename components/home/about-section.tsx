@@ -12,7 +12,7 @@ export default function AboutSection() {
             src="/images/about/Elen.png"
             alt="Elen at work — ELEN Makeup Telford"
             fill
-            className="object-cover"
+            className="object-cover object-[center_bottom]"
             sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>

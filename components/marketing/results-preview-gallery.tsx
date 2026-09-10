@@ -143,6 +143,33 @@ function GalleryStrip({
   )
 }
 
+function JourneyBlock({
+  journey,
+  compactPlaceholders,
+}: {
+  journey: PmuResultJourneySet
+  compactPlaceholders: boolean
+}) {
+  return (
+    <div className="space-y-5">
+      <div className="mx-auto max-w-xl text-center">
+        <h3 className="font-heading text-lg tracking-tight text-luxury-charcoal sm:text-xl">
+          {journey.title}
+        </h3>
+        {journey.subtitle ? (
+          <p className="mt-2 text-sm leading-relaxed text-stone-500">{journey.subtitle}</p>
+        ) : null}
+      </div>
+      <GalleryStrip
+        items={journey.items}
+        compactPlaceholders={compactPlaceholders}
+        ariaLabel={journey.title}
+        columns={journey.items.length >= 4 ? 4 : journey.items.length === 2 ? 2 : 3}
+      />
+    </div>
+  )
+}
+
 export function ResultsPreviewGallery({
   title,
   subtitle,
@@ -153,10 +180,12 @@ export function ResultsPreviewGallery({
   ctaLabel = "View Results",
   id,
   compactPlaceholders = false,
-  expandLabel = "Show more results",
-  collapseLabel = "Show fewer results",
+  expandLabel = "Show more healing journeys",
+  collapseLabel = "Show fewer journeys",
 }: ResultsPreviewGalleryProps) {
-  const hasJourneys = Boolean(journeySets?.length)
+  const featuredJourney = journeySets?.[0]
+  const moreJourneys = journeySets?.slice(1) ?? []
+  const hasMoreJourneys = moreJourneys.length > 0
   const previewColumns = items.length >= 4 ? 4 : 3
 
   return (
@@ -181,8 +210,17 @@ export function ResultsPreviewGallery({
           columns={previewColumns}
         />
 
-        {hasJourneys ? (
-          <details className="group border-t border-stone-200/80 pt-8">
+        {featuredJourney ? (
+          <div className="space-y-5 border-t border-stone-200/80 pt-8">
+            <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-stone-500">
+              A full healing journey — before, mapping where shown, first session, then healed.
+            </p>
+            <JourneyBlock journey={featuredJourney} compactPlaceholders={compactPlaceholders} />
+          </div>
+        ) : null}
+
+        {hasMoreJourneys ? (
+          <details className="group">
             <summary className="flex cursor-pointer list-none items-center justify-center gap-2 rounded-lg py-2 text-sm font-medium text-luxury-charcoal transition-colors hover:text-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-400/55 focus-visible:ring-offset-2 focus-visible:ring-offset-luxury-ivory [&::-webkit-details-marker]:hidden">
               <span className="group-open:hidden">{expandLabel}</span>
               <span className="hidden group-open:inline">{collapseLabel}</span>
@@ -193,29 +231,12 @@ export function ResultsPreviewGallery({
             </summary>
 
             <div className="mt-8 space-y-12">
-              <p className="mx-auto max-w-2xl text-center text-sm leading-relaxed text-stone-500">
-                Swipe through each journey — before, mapping where shown, first session, then healed.
-              </p>
-
-              {journeySets!.map((journey) => (
-                <div key={journey.id} className="space-y-5">
-                  <div className="mx-auto max-w-xl text-center">
-                    <h3 className="font-heading text-lg tracking-tight text-luxury-charcoal sm:text-xl">
-                      {journey.title}
-                    </h3>
-                    {journey.subtitle ? (
-                      <p className="mt-2 text-sm leading-relaxed text-stone-500">{journey.subtitle}</p>
-                    ) : null}
-                  </div>
-                  <GalleryStrip
-                    items={journey.items}
-                    compactPlaceholders={compactPlaceholders}
-                    ariaLabel={journey.title}
-                    columns={
-                      journey.items.length >= 4 ? 4 : journey.items.length === 2 ? 2 : 3
-                    }
-                  />
-                </div>
+              {moreJourneys.map((journey) => (
+                <JourneyBlock
+                  key={journey.id}
+                  journey={journey}
+                  compactPlaceholders={compactPlaceholders}
+                />
               ))}
             </div>
           </details>
