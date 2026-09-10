@@ -15,6 +15,8 @@ export type PMUHeroProps = {
   secondaryCta: string
   secondaryHref: string
   trustLine: string
+  /** Short supporting line directly under the primary/secondary CTAs (e.g. consultation reassurance). */
+  ctaReassurance?: string
   /** Hero image — swap for studio photography or short loop when assets are ready. */
   imageSrc?: string
   imageAlt?: string
@@ -30,6 +32,7 @@ export function PMUHero({
   secondaryCta,
   secondaryHref,
   trustLine,
+  ctaReassurance,
   imageSrc = DEFAULT_PMU_HERO_IMAGE,
   imageAlt = "ELEN Makeup treatment space in Telford — relaxed studio setting",
   showBooksyReviewProof = false,
@@ -53,6 +56,10 @@ export function PMUHero({
                 <Link href={secondaryHref}>{secondaryCta}</Link>
               </Button>
             </div>
+
+            {ctaReassurance ? (
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-stone-600">{ctaReassurance}</p>
+            ) : null}
 
             {showBooksyReviewProof ? (
               <div className="mt-8 max-w-md border-l border-stone-200 pl-5">

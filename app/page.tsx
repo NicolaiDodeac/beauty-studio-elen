@@ -36,12 +36,12 @@ const TRUST_ITEMS = [
 
 const WHY_CARDS = [
   {
-    title: "Natural, Soft Results",
+    title: "Natural Brows, Never Overdone",
     description:
-      "Beauty enhancements designed to feel refined, balanced, and never overdone.",
+      "Beauty enhancements designed to feel refined, balanced, and softly natural.",
   },
   {
-    title: "Personal Consultation",
+    title: "Face-Shaped Consultation",
     description:
       "Every appointment starts with understanding your features, lifestyle, and desired look.",
   },
@@ -60,19 +60,21 @@ const WHY_CARDS = [
 const ABOUT_COPY = [
   "ELEN Makeup is a calm, appointment-led studio in Telford — built around soft luxury beauty and natural confidence.",
   "Everything starts with listening: how you live, what makes you feel good in your skin, and the ease you want from your routine.",
-  "Expect thoughtful attention and honest guidance — whether you’re exploring brows, refining your look, or booking your first visit.",
+  "Elen focuses on soft, balanced results, careful brow mapping, and honest guidance before any treatment is booked.",
+  "Expect thoughtful attention — whether you’re exploring brows, refining your look, or booking your first visit.",
 ] as const
 
 export default function Home() {
   return (
     <div className="pb-28 md:pb-0">
       <PMUHero
-        eyebrow="Soft Luxury Beauty in Telford"
+        eyebrow="Soft Luxury Powder Brows & Beauty in Telford"
         headline="Effortless Beauty That Still Feels Like You"
         subheadline="Natural, refined beauty treatments designed to help you feel polished, confident, and softly enhanced every day."
         primaryCta="Book Free Consultation"
         secondaryCta="Explore Powder Brows"
         secondaryHref="/powder-brows-telford"
+        ctaReassurance="Free consultation first — no pressure, just honest advice about what suits your face."
         trustLine="Trusted by women across Telford & Shropshire for natural, elegant results."
         showBooksyReviewProof
       />
@@ -83,8 +85,8 @@ export default function Home() {
 
       <ResultsPreviewGallery
         title="A Soft Preview of Natural Results"
-        subtitle="Explore the style of soft, natural results we’re preparing to showcase — real client transformations will appear here once photography is approved."
-        note="These tiles are placeholders until consent-led shoots land; see Powder Brows for full treatment detail and booking."
+        subtitle="Explore the soft, natural style Elen is known for — real results are being added."
+        note="More photography coming soon; full treatment detail and booking on Powder Brows."
         items={PMU_HOME_GALLERY_PREVIEW_ITEMS}
         resultsHref="/powder-brows-telford#gallery"
         ctaLabel="Explore Powder Brows"

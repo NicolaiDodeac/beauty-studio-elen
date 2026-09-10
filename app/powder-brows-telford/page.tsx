@@ -18,7 +18,7 @@ import { TrustStrip } from "@/components/marketing/trust-strip"
 import { WhyChooseElen } from "@/components/marketing/why-choose-elen"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Button } from "@/components/ui/button"
-import { PMU_RESULTS_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
+import { PMU_RESULTS_JOURNEY_SETS, PMU_RESULTS_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
 import { getGoogleReviews } from "@/lib/google-reviews"
 import { getBooksyProfileUrl } from "@/lib/reviews/review-stats"
 import { buildPageMetadata } from "@/lib/seo/metadata"
@@ -168,15 +168,18 @@ export default async function PowderBrowsTelfordPage() {
         cards={WHY_POWDER_BROWS_CARDS}
       />
 
-      {/* Gallery tiles — replacement specs live in `lib/marketing/pmu-gallery.ts` (`PMU_RESULTS_PREVIEW_ITEMS`). */}
+      {/* Gallery + expandable journeys — `lib/marketing/pmu-gallery.ts`. */}
       <ResultsPreviewGallery
         id="gallery"
-        title="Gallery preview"
-        subtitle="Illustrative tiles for layout only — consent-led client photography will replace these when ready."
-        note="These are not presented as verified results or before-and-after proof."
+        title="Results gallery"
+        subtitle="A soft preview of the powder brow style — open more to see before, first session, and healed."
+        note="Colour looks stronger right after treatment, then softens as brows heal."
         items={PMU_RESULTS_PREVIEW_ITEMS}
+        journeySets={PMU_RESULTS_JOURNEY_SETS}
         resultsHref="/powder-brows-telford#powder-process"
         ctaLabel="See the treatment process"
+        expandLabel="Show before & healed journeys"
+        collapseLabel="Hide journeys"
       />
 
       <Section tone="ivory">

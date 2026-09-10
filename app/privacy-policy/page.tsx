@@ -61,10 +61,6 @@ export default function PrivacyPolicyPage() {
           <h2 className="font-heading text-2xl font-semibold text-gray-900">2. What information we collect</h2>
           <ul className="list-disc space-y-2 pl-5">
             <li>
-              <strong>Contact form:</strong> name, email address, phone number if you provide it, subject, and message
-              content.
-            </li>
-            <li>
               <strong>WhatsApp / Instagram:</strong> messages you send us and metadata provided by those platforms (for
               example display name). See Meta/WhatsApp privacy notices for how they process data on their side.
             </li>
@@ -201,9 +197,9 @@ export default function PrivacyPolicyPage() {
             <a className="text-amber-800 underline underline-offset-2" href={siteMailtoHref("Privacy question")}>
               {SITE_PUBLIC_EMAIL}
             </a>{" "}
-            or use our{" "}
+            or reach us via{" "}
             <Link href="/contact" className="text-amber-800 underline underline-offset-2">
-              contact form
+              WhatsApp or phone
             </Link>
             .
           </p>

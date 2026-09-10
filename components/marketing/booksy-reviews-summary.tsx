@@ -77,7 +77,8 @@ export function BooksyReviewsSummary({
         </ul>
       ) : (
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone-600">
-          Read verified client reviews on Booksy before booking — star ratings and full feedback live on our profile.
+          Read verified reviews before booking your free consultation — star ratings and full feedback are on our Booksy
+          profile.
         </p>
       )}
 

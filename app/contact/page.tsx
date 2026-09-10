@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import ContactForm from "@/components/contact/contact-form"
 import ContactInfo from "@/components/contact/contact-info"
 import BusinessHours from "@/components/contact/business-hours"
 import LocationMap from "@/components/contact/location-map"
@@ -41,19 +40,9 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <div>
-          <h2 className="text-lg font-semibold text-gray-900 font-heading mb-4">Send a message</h2>
-          <p className="text-sm text-gray-600 mb-4">
-            Not on WhatsApp? Leave a note here and we will get back to you by email.
-          </p>
-          <ContactForm />
-        </div>
-
-        <div className="space-y-8">
-          <ContactInfo />
-          <BusinessHours />
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
+        <ContactInfo />
+        <BusinessHours />
       </div>
 
       <LocationMap />
