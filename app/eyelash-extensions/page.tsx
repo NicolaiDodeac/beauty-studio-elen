@@ -10,12 +10,14 @@ import ServiceTestimonials from "@/components/services/service-testimonials"
 import GoogleReviews from "@/components/reviews/google-reviews"
 import { getGoogleReviews } from "@/lib/google-reviews"
 import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/eyelash-extensions",
   title: "Eyelash Extensions Telford",
   description:
     "UV/LED lash extensions in Telford — custom-mapped classic, hybrid, and volume sets in a calm studio. Book a free consultation or patch test.",
-}
+})
 
 /*
  * MEDIA PLACEHOLDERS — `/eyelash-extensions`

@@ -12,12 +12,14 @@ import {
   siteWhatsAppUrl,
 } from "@/lib/site-contact"
 import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/privacy-policy",
   title: "Privacy Policy | ELEN Makeup Telford",
   description:
     "How ELEN Makeup Telford collects, uses, and stores personal information — clear guidance for clients and website visitors (UK GDPR aligned).",
-}
+})
 
 export default function PrivacyPolicyPage() {
   const addressBlock = SITE_ADDRESS_LINES.join(", ")

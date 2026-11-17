@@ -8,12 +8,14 @@ import {
   SITE_PUBLIC_EMAIL,
   siteMailtoHref,
 } from "@/lib/site-contact"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/terms",
   title: "Terms & Conditions | ELEN Makeup Telford",
   description:
     "Website terms for ELEN Makeup Telford — bookings via Booksy, consultations, deposits, and sensible liability limits in plain English.",
-}
+})
 
 export default function TermsPage() {
   const addressBlock = SITE_ADDRESS_LINES.join(", ")

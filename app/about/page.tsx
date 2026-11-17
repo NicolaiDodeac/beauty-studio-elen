@@ -3,12 +3,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import { CheckCircle } from "lucide-react"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/about",
   title: "About Elen",
   description:
     "Meet Elen — natural luxury PMU and powder brows in Telford. Founder-led care, soft editorial results, and a calm studio experience.",
-}
+})
 
 export default function AboutPage() {
   return (
