@@ -1,12 +1,12 @@
 "use client"
 
-import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { ConsultationButton } from "@/components/booking/consultation-button"
 
 export type StickyMobileCTAProps = {
   label?: string
 }
 
-/** Bottom-fixed consultation CTA — mobile only; opens Booksy like other booking buttons. */
+/** Bottom-fixed consultation CTA — mobile only. */
 export function StickyMobileCTA({ label = "Book Consultation" }: StickyMobileCTAProps) {
   return (
     <div
@@ -14,9 +14,9 @@ export function StickyMobileCTA({ label = "Book Consultation" }: StickyMobileCTA
       role="region"
       aria-label="Book consultation"
     >
-      <BooksyBookButton variant="cta" size="lg" className="w-full">
+      <ConsultationButton variant="cta" size="lg" className="w-full">
         {label}
-      </BooksyBookButton>
+      </ConsultationButton>
     </div>
   )
 }

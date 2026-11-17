@@ -2,8 +2,10 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { POWDER_BROWS_PATH } from "@/lib/marketing/powder-brows-consultation"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
 import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 import { WhatsAppMark } from "@/components/ui-elements/whatsapp-mark"
@@ -13,6 +15,12 @@ const fabSecondary =
   "h-14 w-14 rounded-full shadow-lg [&_svg]:!h-8 [&_svg]:!w-8 shrink-0"
 
 export default function FloatingContactButtons() {
+  if (usePathname() === POWDER_BROWS_PATH) return null
+
+  return <ContactButtons />
+}
+
+function ContactButtons() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (

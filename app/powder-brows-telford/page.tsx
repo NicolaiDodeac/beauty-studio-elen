@@ -20,7 +20,6 @@ import { JsonLd } from "@/components/seo/json-ld"
 import { Button } from "@/components/ui/button"
 import { PMU_RESULTS_JOURNEY_SETS, PMU_RESULTS_PREVIEW_ITEMS } from "@/lib/marketing/pmu-gallery"
 import { getGoogleReviews } from "@/lib/google-reviews"
-import { getBooksyProfileUrl } from "@/lib/reviews/review-stats"
 import { buildPageMetadata } from "@/lib/seo/metadata"
 import { breadcrumbListSchema, faqPageSchema, serviceSchema } from "@/lib/seo/schema"
 
@@ -118,7 +117,7 @@ export default async function PowderBrowsTelfordPage() {
   const googlePayload = await getGoogleReviews()
 
   return (
-    <div className="pb-28 md:pb-0">
+    <div className="pb-28 md:pb-0" data-powder-brows-landing>
       <PMUHero
         eyebrow="Powder Brows Telford"
         headline="Natural Powder Brows Designed Around Your Face"
@@ -357,19 +356,7 @@ export default async function PowderBrowsTelfordPage() {
 
       <Section tone="light">
         <Container className="max-w-3xl space-y-6">
-          <p className="text-center text-sm leading-relaxed text-stone-600">
-            For the most complete and up-to-date client feedback,{" "}
-            <Link
-              href={getBooksyProfileUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-luxury-charcoal underline decoration-stone-300 underline-offset-4 transition-colors hover:decoration-luxury-charcoal"
-            >
-              view verified reviews on Booksy
-            </Link>
-            .
-          </p>
-          <BooksyReviewsSummary variant="section" />
+          <BooksyReviewsSummary variant="section" showProfileLink={false} />
         </Container>
       </Section>
 
@@ -394,10 +381,10 @@ export default async function PowderBrowsTelfordPage() {
       <FinalCTA
         headline="Curious if powder brows suit you?"
         text="Book a free consultation — we’ll talk mapping, healing, and whether your skin and goals are a good match."
-        ctaLabel="Book free consultation"
+        ctaLabel="Book Free Consultation"
       />
 
-      <StickyMobileCTA label="Book Consultation" />
+      <StickyMobileCTA label="Book Free Consultation" />
 
       <JsonLd
         data={[

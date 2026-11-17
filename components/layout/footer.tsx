@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { ExternalLink } from "lucide-react"
 
 import { SiteLogoMark } from "@/components/layout/site-logo-mark"
@@ -6,6 +9,7 @@ import { WhatsAppMark } from "@/components/ui-elements/whatsapp-mark"
 import { SITE_LOGO_ALT, SITE_LOGO_FOOTER_PX } from "@/lib/site-logo"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
 import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
+import { POWDER_BROWS_PATH } from "@/lib/marketing/powder-brows-consultation"
 import { getBooksyProfileUrl } from "@/lib/reviews/review-stats"
 
 const linkClass =
@@ -15,6 +19,7 @@ const groupLabelClass =
   "text-[10px] font-semibold uppercase tracking-[0.14em] text-gray-400"
 
 export default function Footer() {
+  const showContactShortcuts = usePathname() !== POWDER_BROWS_PATH
   const booksyUrl = getBooksyProfileUrl()
 
   return (
@@ -33,15 +38,17 @@ export default function Footer() {
                 &copy; {new Date().getFullYear()} ELEN Makeup Telford. All rights reserved.
               </p>
             </div>
-            <Link
-              href={siteWhatsAppUrl(SITE_WHATSAPP_DEFAULT_MESSAGE)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex text-gray-400 transition-colors hover:text-[#25D366]"
-              aria-label="WhatsApp"
-            >
-              <WhatsAppMark className="h-6 w-6" />
-            </Link>
+            {showContactShortcuts && (
+              <Link
+                href={siteWhatsAppUrl(SITE_WHATSAPP_DEFAULT_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex text-gray-400 transition-colors hover:text-[#25D366]"
+                aria-label="WhatsApp"
+              >
+                <WhatsAppMark className="h-6 w-6" />
+              </Link>
+            )}
           </div>
 
           <nav
@@ -104,12 +111,14 @@ export default function Footer() {
                     <ExternalLink className="h-3 w-3 opacity-60" aria-hidden />
                   </Link>
                 </li>
-                <li>
-                  <Link href={booksyUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                    Booksy
-                    <ExternalLink className="h-3 w-3 opacity-60" aria-hidden />
-                  </Link>
-                </li>
+                {showContactShortcuts && (
+                  <li>
+                    <Link href={booksyUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                      Booksy
+                      <ExternalLink className="h-3 w-3 opacity-60" aria-hidden />
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
 

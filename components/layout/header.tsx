@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { ConsultationButton } from "@/components/booking/consultation-button"
 import { SiteLogoMark } from "@/components/layout/site-logo-mark"
 import { SITE_LOGO_ALT, SITE_LOGO_HEADER_PX } from "@/lib/site-logo"
 
@@ -54,9 +54,9 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+          <ConsultationButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
             Book Free Consultation
-          </BooksyBookButton>
+          </ConsultationButton>
         </div>
       </nav>
 
@@ -96,12 +96,12 @@ export default function Header() {
                     </Link>
                   ))}
                   <div className="mt-4">
-                    <BooksyBookButton
+                    <ConsultationButton
                       className="w-full bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800"
-                      onClick={() => setMobileMenuOpen(false)}
+                      onActivate={() => setMobileMenuOpen(false)}
                     >
                       Book Free Consultation
-                    </BooksyBookButton>
+                    </ConsultationButton>
                   </div>
                 </div>
               </div>

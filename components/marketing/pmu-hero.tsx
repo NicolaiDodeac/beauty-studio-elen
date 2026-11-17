@@ -4,7 +4,7 @@ import Link from "next/link"
 import { DEFAULT_PMU_HERO_IMAGE } from "@/lib/marketing/hero-media"
 import { BooksyReviewsSummary } from "@/components/marketing/booksy-reviews-summary"
 import { Container } from "@/components/marketing/container"
-import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { ConsultationButton } from "@/components/booking/consultation-button"
 import { Button } from "@/components/ui/button"
 
 export type PMUHeroProps = {
@@ -49,9 +49,9 @@ export function PMUHero({
             <p className="mt-6 text-lg leading-relaxed text-stone-600">{subheadline}</p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
-              <BooksyBookButton size="lg" variant="cta" className="px-8 sm:min-w-[14rem]">
+              <ConsultationButton size="lg" variant="cta" className="px-8 sm:min-w-[14rem]">
                 {primaryCta}
-              </BooksyBookButton>
+              </ConsultationButton>
               <Button asChild variant="ctaOutline" size="lg" className="px-8 sm:min-w-[12rem]">
                 <Link href={secondaryHref}>{secondaryCta}</Link>
               </Button>
