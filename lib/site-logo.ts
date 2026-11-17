@@ -1,6 +1,6 @@
 /** Site logo in `public/images/logo/` (square asset). */
 export const SITE_LOGO_SRC = "/images/logo/logo.png" as const
-export const SITE_LOGO_ALT = "Elen.MakeUp.Telford" as const
+export const SITE_LOGO_ALT = "ELEN Makeup Telford" as const
 
 /**
  * Zoom past the bounding box to clip empty padding in the PNG (center crop).

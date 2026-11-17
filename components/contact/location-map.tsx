@@ -20,7 +20,7 @@ export default function LocationMap() {
           ></iframe>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="bg-white p-4 rounded-lg shadow-lg max-w-xs text-center">
-              <h3 className="font-medium text-lg mb-1">Elen.MakeUp.Telford</h3>
+              <h3 className="font-medium text-lg mb-1">ELEN Makeup Telford</h3>
               <p className="text-gray-600 text-sm"> House Of Beauty, Wellington Rd, Donnington, Telford TF2 8AH</p>
               <a
                 href="https://www.google.com/maps/dir/52.7045817,-2.4822575/House+Of+Beauty,+Wellington+Rd,+Donnington,+Telford+TF2+8AH"

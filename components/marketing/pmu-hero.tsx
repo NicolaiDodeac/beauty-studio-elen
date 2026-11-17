@@ -1,0 +1,95 @@
+import Image from "next/image"
+import Link from "next/link"
+
+import { DEFAULT_PMU_HERO_IMAGE } from "@/lib/marketing/hero-media"
+import { BooksyReviewsSummary } from "@/components/marketing/booksy-reviews-summary"
+import { Container } from "@/components/marketing/container"
+import { ConsultationButton } from "@/components/booking/consultation-button"
+import { Button } from "@/components/ui/button"
+
+export type PMUHeroProps = {
+  eyebrow: string
+  headline: string
+  subheadline: string
+  primaryCta: string
+  secondaryCta: string
+  secondaryHref: string
+  trustLine: string
+  /** Short supporting line directly under the primary/secondary CTAs (e.g. consultation reassurance). */
+  ctaReassurance?: string
+  /** Hero image — swap for studio photography or short loop when assets are ready. */
+  imageSrc?: string
+  imageAlt?: string
+  /** Subtle Booksy star summary below CTAs */
+  showBooksyReviewProof?: boolean
+}
+
+export function PMUHero({
+  eyebrow,
+  headline,
+  subheadline,
+  primaryCta,
+  secondaryCta,
+  secondaryHref,
+  trustLine,
+  ctaReassurance,
+  imageSrc = DEFAULT_PMU_HERO_IMAGE,
+  imageAlt = "ELEN Makeup treatment space in Telford — relaxed studio setting",
+  showBooksyReviewProof = false,
+}: PMUHeroProps) {
+  return (
+    <section className="relative isolate overflow-hidden bg-luxury-ivory pt-6 pb-12 sm:pt-8 sm:pb-16 lg:py-20">
+      <Container>
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
+          <div className="max-w-xl lg:max-w-none">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-stone-500 sm:text-sm">{eyebrow}</p>
+            <h1 className="mt-4 font-heading text-4xl tracking-tight text-luxury-charcoal sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]">
+              {headline}
+            </h1>
+            <p className="mt-6 text-lg leading-relaxed text-stone-600">{subheadline}</p>
+
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <ConsultationButton size="lg" variant="cta" className="px-8 sm:min-w-[14rem]">
+                {primaryCta}
+              </ConsultationButton>
+              <Button asChild variant="ctaOutline" size="lg" className="px-8 sm:min-w-[12rem]">
+                <Link href={secondaryHref}>{secondaryCta}</Link>
+              </Button>
+            </div>
+
+            {ctaReassurance ? (
+              <p className="mt-5 max-w-xl text-sm leading-relaxed text-stone-600">{ctaReassurance}</p>
+            ) : null}
+
+            {showBooksyReviewProof ? (
+              <div className="mt-8 max-w-md border-l border-stone-200 pl-5">
+                <BooksyReviewsSummary variant="compact" />
+              </div>
+            ) : null}
+
+            <p className="mt-10 text-sm text-stone-500">{trustLine}</p>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none">
+            {/*
+              MEDIA TODO — see `lib/marketing/hero-media.ts`:
+              Replace with real ELEN healed powder brow close-up OR Elen mapping brows OR Elen working with client (consented).
+              Avoid: red lipstick, rose/fashion shot, stock model, heavy glam, brows not focal.
+              Ideal: vertical-friendly portrait, neutral tones, natural skin texture, brow-forward, calm premium feel.
+            */}
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-stone-200/90 shadow-lg shadow-stone-900/5 ring-1 ring-stone-900/[0.03]">
+              <Image
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                priority
+                className="object-cover object-[50%_36%] animate-fade-in motion-reduce:animate-none sm:object-[50%_34%]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  )
+}

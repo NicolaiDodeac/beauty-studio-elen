@@ -2,9 +2,12 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { POWDER_BROWS_PATH } from "@/lib/marketing/powder-brows-consultation"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
+import { SITE_INSTAGRAM_URL } from "@/lib/site-social"
 import { WhatsAppMark } from "@/components/ui-elements/whatsapp-mark"
 import { cn } from "@/lib/utils"
 
@@ -12,6 +15,12 @@ const fabSecondary =
   "h-14 w-14 rounded-full shadow-lg [&_svg]:!h-8 [&_svg]:!w-8 shrink-0"
 
 export default function FloatingContactButtons() {
+  if (usePathname() === POWDER_BROWS_PATH) return null
+
+  return <ContactButtons />
+}
+
+function ContactButtons() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -31,8 +40,12 @@ export default function FloatingContactButtons() {
               <span className="sr-only">WhatsApp</span>
             </Link>
           </Button>
-          <Button asChild className={cn(fabSecondary, "bg-pink-500 hover:bg-pink-600 text-white")} size="icon">
-            <Link href="https://instagram.com/elenmakeuptelford" target="_blank" rel="noopener noreferrer">
+          <Button
+            asChild
+            className={cn(fabSecondary, "bg-stone-700 hover:bg-stone-800 text-white border-0")}
+            size="icon"
+          >
+            <Link href={SITE_INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"

@@ -6,20 +6,20 @@ import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/comp
 const services = [
   {
     id: "permanent-makeup",
-    title: "Permanent Makeup",
-    description: "Enhance your natural features with long-lasting makeup solutions.",
+    title: "Powder brows & PMU",
+    description: "Soft, natural-looking powder brows and refined semi-permanent makeup in Telford.",
     image: "/placeholder.svg?height=300&width=400",
   },
   {
     id: "eyelash-extensions",
-    title: "Eyelash Extensions",
-    description: "Get fuller, longer lashes that enhance your eyes and simplify your routine.",
+    title: "Eyelash extensions",
+    description: "Mapped lash sets for an effortless, polished look — classic, hybrid, or volume.",
     image: "/placeholder.svg?height=300&width=400",
   },
   {
     id: "facial-treatments",
-    title: "Facial Treatments",
-    description: "Rejuvenate your skin with our customized facial treatments.",
+    title: "Facial treatments",
+    description: "Calm, customised facials focused on glow, balance, and skin comfort.",
     image: "/placeholder.svg?height=300&width=400",
   },
 ]
@@ -28,9 +28,9 @@ export default function FeaturedServices() {
   return (
     <section className="py-12 px-6 max-w-7xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Our Services</h2>
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl font-heading">Services</h2>
         <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover our range of premium beauty services designed to enhance your natural beauty.
+          Natural luxury PMU and lash artistry — consultation-led, tailored to you.
         </p>
       </div>
 
@@ -47,7 +47,7 @@ export default function FeaturedServices() {
             <CardFooter>
               <Link
                 href={`/services/${service.id}`}
-                className="text-pink-600 hover:text-pink-800 font-medium flex items-center"
+                className="text-amber-900/90 hover:text-amber-950 font-medium flex items-center"
               >
                 Learn more <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -57,7 +57,7 @@ export default function FeaturedServices() {
       </div>
 
       <div className="text-center mt-12">
-        <Link href="/services" className="text-pink-600 hover:text-pink-800 font-medium inline-flex items-center">
+        <Link href="/services" className="text-amber-900/90 hover:text-amber-950 font-medium inline-flex items-center">
           View all services <ArrowRight className="ml-2 h-4 w-4" />
         </Link>
       </div>

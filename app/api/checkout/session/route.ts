@@ -1,12 +1,17 @@
 import { NextResponse } from "next/server"
 import Stripe from "stripe"
 
+import { getSiteUrl } from "@/lib/seo/site"
+
 export async function POST(req: Request) {
   const stripeSecret = process.env.STRIPE_SECRET_KEY
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+  const siteUrl =
+    process.env.NODE_ENV === "development"
+      ? process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/$/, "")
+      : getSiteUrl()
   if (!stripeSecret || !siteUrl) {
     return NextResponse.json(
-      { error: "Payment is not configured (missing STRIPE_SECRET_KEY or NEXT_PUBLIC_SITE_URL)." },
+      { error: "Payment is not configured. Check STRIPE_SECRET_KEY and, for local development, NEXT_PUBLIC_SITE_URL." },
       { status: 503 }
     )
   }

@@ -64,6 +64,11 @@
   border: 0 !important;
 }
 
+/* Booksy can leave its injected elements behind after client-side navigation. */
+body:has([data-powder-brows-landing]) :is(.booksy-widget-container, .booksy-widget-overlay, .booksy-widget-dialog) {
+  display: none !important;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -89,5 +94,11 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none !important;
   }
 }

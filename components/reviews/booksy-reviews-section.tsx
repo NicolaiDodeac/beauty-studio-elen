@@ -5,6 +5,8 @@ import Link from "next/link"
 import { ExternalLink, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
+import { BOOKSY_REVIEW_STATS } from "@/lib/reviews/review-stats"
+
 const DEFAULT_BOOKSY_URL =
   "https://booksy.com/en-gb/99970_elen-makeup-telford_skin-care_1255315_donnington#ba_s=sr_1"
 
@@ -53,8 +55,10 @@ export default function BooksyReviewsSection({
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-gray-900">
           <div className="inline-flex items-center gap-2">
             <Star className="h-4 w-4 text-amber-500" />
-            <span className="text-sm font-medium">5.0</span>
-            <span className="text-sm text-gray-500">(111 reviews)</span>
+            <span className="text-sm font-medium" aria-hidden>
+              {BOOKSY_REVIEW_STATS.ratingLabel}
+            </span>
+            <span className="text-sm text-gray-600">{BOOKSY_REVIEW_STATS.summaryLine}</span>
           </div>
           <span className="text-xs text-gray-400">Source: Booksy</span>
         </div>

@@ -5,13 +5,14 @@ export default function CTASection() {
     <section className="bg-[#F8F5F2] py-16 px-6">
       <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-6 font-heading">
-          Ready to Transform Your Look?
+          Ready to feel effortlessly polished?
         </h2>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-          Book your appointment today and experience the difference with our premium beauty services.
+          Book a free consultation — we&apos;ll map your brows, answer every question, and plan a soft, natural look you
+          can trust.
         </p>
         <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8 py-6 text-lg">
-          Book Your Appointment
+          Book Free Consultation
         </BooksyBookButton>
       </div>
     </section>

@@ -52,6 +52,15 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        luxury: {
+          ivory: "hsl(42 36% 97%)",
+          champagne: "hsl(38 28% 92%)",
+          linen: "hsl(35 22% 89%)",
+          charcoal: "hsl(24 12% 16%)",
+          espresso: "hsl(22 14% 20%)",
+          cream: "hsl(43 38% 96%)",
+          mist: "hsl(33 15% 72%)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-montserrat)"],
@@ -71,10 +80,15 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "swipe-hint": {
+          "0%, 100%": { transform: "translateX(0)", opacity: "0.55" },
+          "50%": { transform: "translateX(6px)", opacity: "0.95" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "swipe-hint": "swipe-hint 1.6s ease-in-out infinite",
       },
     },
   },

@@ -1,9 +1,11 @@
 import PaymentForm from "@/components/booking/payment-form"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: "/booking/payment",
   title: "Payment | Glow Beauty Studio",
   description: "Complete your booking by paying a deposit for your beauty service appointment.",
-}
+})
 
 export default function PaymentPage() {
   return (

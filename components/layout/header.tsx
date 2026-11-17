@@ -3,16 +3,15 @@
 import { useState } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { ConsultationButton } from "@/components/booking/consultation-button"
 import { SiteLogoMark } from "@/components/layout/site-logo-mark"
 import { SITE_LOGO_ALT, SITE_LOGO_HEADER_PX } from "@/lib/site-logo"
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Semi-Permanent Makeup", href: "/semi-permanent-makeup" },
-  { name: "Eyelash Extensions", href: "/eyelash-extensions" },
-  { name: "Blog", href: "/blog" },
+  { name: "Powder Brows", href: "/powder-brows-telford" },
   { name: "About", href: "/about" },
+  { name: "Journal", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ]
 
@@ -55,9 +54,9 @@ export default function Header() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <BooksyBookButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            Book Appointment
-          </BooksyBookButton>
+          <ConsultationButton className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
+            Book Free Consultation
+          </ConsultationButton>
         </div>
       </nav>
 
@@ -97,12 +96,12 @@ export default function Header() {
                     </Link>
                   ))}
                   <div className="mt-4">
-                    <BooksyBookButton
+                    <ConsultationButton
                       className="w-full bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800"
-                      onClick={() => setMobileMenuOpen(false)}
+                      onActivate={() => setMobileMenuOpen(false)}
                     >
-                      Book Appointment
-                    </BooksyBookButton>
+                      Book Free Consultation
+                    </ConsultationButton>
                   </div>
                 </div>
               </div>

@@ -12,6 +12,10 @@ interface ServiceTestimonialsProps {
 }
 
 export default function ServiceTestimonials({ testimonials }: ServiceTestimonialsProps) {
+  if (!testimonials.length) {
+    return null
+  }
+
   return (
     <section className="my-16">
       <h2 className="text-2xl font-bold mb-6 font-heading">What Our Clients Say</h2>

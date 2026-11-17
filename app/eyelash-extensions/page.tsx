@@ -1,26 +1,36 @@
 import Image from "next/image"
+import Link from "next/link"
 import type { Metadata } from "next"
+import { ServiceHeroPlaceholder } from "@/components/marketing/branded-placeholder-media"
 import { BooksyBookButton } from "@/components/booking/booksy-book-button"
 import ServiceGallery from "@/components/services/service-gallery"
 import ServicePricing from "@/components/services/service-pricing"
 import ServiceFAQ from "@/components/services/service-faq"
 import ServiceTestimonials from "@/components/services/service-testimonials"
+import GoogleReviews from "@/components/reviews/google-reviews"
+import { getGoogleReviews } from "@/lib/google-reviews"
+import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
-  title: "Eyelash Extensions | Elen.MakeUp.Telford",
+export const metadata: Metadata = buildPageMetadata({
+  path: "/eyelash-extensions",
+  title: "Eyelash Extensions Telford",
   description:
-    "UV lash extensions in Telford. Fuller, lighter-feeling lashes with a faster cure and a comfortable finish. Book a consultation, patch test, or full set.",
-  keywords:
-    "UV lash extensions, LED lash extensions, eyelash extensions, classic lashes, volume lashes, hybrid lashes, lash lift, Telford",
-}
+    "UV/LED lash extensions in Telford — custom-mapped classic, hybrid, and volume sets in a calm studio. Book a free consultation or patch test.",
+})
 
+/*
+ * MEDIA PLACEHOLDERS — `/eyelash-extensions`
+ * Hero: Authentic lash set close-up — safe eye crop; real client or demo model with consent (NOT packaged stock-lash imagery).
+ * Gallery ×6: Classic / hybrid / volume retention photos — crisp lashes, neutral background; each slot labelled in checklist.
+ */
 // Eyelash extensions service data
 const serviceData = {
-  title: "Eyelash Extensions",
+  title: "Eyelash Extensions in Telford",
   description:
-    "Wake up with polished lashes every day—custom-mapped for your eye shape, lifestyle, and the look you love in Telford.",
+    "Wake up with polished lashes every day - custom-mapped for your eye shape, lifestyle, and the look you love.",
   longDescription:
-    "If you want the “mascara look” without mascara, eyelash extensions are the most effortless upgrade. I create classic, hybrid, and volume sets that look flattering up close (not heavy), feel comfortable, and suit your natural lashes.\n\nI’m based in Telford and work from a beautiful, luxury-feel space with separate treatment rooms and a super-comfy lash bed—because you’ll be lying down for a couple of hours, and comfort matters.\n\nMy signature option is UV/LED lash extensions: the adhesive is cured with a controlled UV/LED light, which means a faster set and a more consistent finish compared to traditional air-drying glues that depend on humidity. Many clients also find the experience more comfortable because there’s less time with wet adhesive.\n\nNot sure what to book? Start with a consultation or patch test and we’ll choose the safest, most flattering set for you.",
+    "If you want the “mascara look” without mascara, eyelash extensions are the most effortless upgrade. I create classic, hybrid, and volume sets that look flattering up close (not heavy), feel comfortable, and suit your natural lashes.\n\nI’m based in Telford and work from a beautiful, luxury-feel space with separate treatment rooms and a super-comfy lash bed—because you’ll be lying down throughout the appointment, and comfort matters.\n\nMy signature option is UV/LED lash extensions: the adhesive is cured with a very safe and controlled UV/LED light, which means a faster set and a more consistent finish compared to traditional air-drying glues that depend on humidity. Many clients also find the experience more comfortable because there’s less time with wet adhesive. No dangerous fumes, no strong smell, no need to wait for it to dry, and also last longer. \n\nNot sure what to book? Start with a consultation or patch test and we’ll choose the safest, most flattering set for you.",
   image: "/placeholder.svg?height=600&width=1200",
   gallery: [
     "/placeholder.svg?height=400&width=600",
@@ -79,61 +89,60 @@ const serviceData = {
         "A full set of classic lashes typically takes 1.5-2 hours, while volume and hybrid sets can take 2-3 hours. Fills usually take about 1 hour, depending on how many extensions need to be replaced.",
     },
   ],
-  testimonials: [
-    {
-      id: 1,
-      content:
-        "I've been getting lash extensions for over a year now, and I can't imagine going back to my natural lashes. They save me so much time in the morning!",
-      author: "Amanda R.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-    {
-      id: 2,
-      content: "Elen was so gentle and precise. My lashes look amazing and feel completely natural. Highly recommend!",
-      author: "Sophia L.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-    {
-      id: 3,
-      content:
-        "The hybrid set was perfect for me - not too dramatic but still gave me the fullness I wanted. Elen really listened to what I was looking for.",
-      author: "Rebecca T.",
-      avatar: "/placeholder.svg?height=60&width=60",
-    },
-  ],
+  testimonials: [],
 }
 
-export default function EyelashExtensionsPage() {
+export default async function EyelashExtensionsPage() {
+  const googlePayload = await getGoogleReviews()
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="mb-12">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6 font-heading">
+        <h1 className="font-heading text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
           {serviceData.title}
         </h1>
         <p className="text-xl text-gray-600 max-w-3xl">{serviceData.description}</p>
       </div>
 
-      <div className="relative w-full h-[400px] md:h-[500px] rounded-xl overflow-hidden mb-12">
-        <Image
-          src={serviceData.image || "/placeholder.svg"}
-          alt={serviceData.title}
-          fill
-          className="object-cover"
-          priority
-        />
-      </div>
+      {isPlaceholderMediaSrc(serviceData.image) ? (
+        <ServiceHeroPlaceholder className="mb-12" />
+      ) : (
+        <div className="relative mb-12 h-[400px] w-full overflow-hidden rounded-xl md:h-[500px]">
+          <Image
+            src={serviceData.image || "/placeholder.svg"}
+            alt={serviceData.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
         <div className="lg:col-span-2">
           <h2 className="text-2xl font-bold mb-4 font-heading">About {serviceData.title}</h2>
-          <p className="text-lg text-gray-700 mb-8">{serviceData.longDescription}</p>
+          <div className="mb-8 space-y-4 text-lg text-gray-700">
+            {serviceData.longDescription.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+          <p className="mb-8 text-lg text-gray-700">
+            Brow treatments are separate from lashes — see{" "}
+            <Link
+              href="/powder-brows-telford"
+              className="font-medium text-stone-800 underline underline-offset-4 hover:text-stone-950"
+            >
+              powder brows in Telford
+            </Link>{" "}
+            if brows are your priority.
+          </p>
 
           <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800">
-            Book a Consultation / Patch Test
+            Book Free Consultation
           </BooksyBookButton>
         </div>
 
-        <div className="bg-[#F8F5F2] p-6 rounded-lg">
+        <div className="rounded-lg border border-stone-100 bg-[#F8F5F2] p-6">
           <h2 className="text-2xl font-bold mb-4 font-heading">Why Choose Elen</h2>
           <ul className="space-y-3">
             <li className="flex items-start">
@@ -160,18 +169,32 @@ export default function EyelashExtensionsPage() {
         </div>
       </div>
 
-      <ServiceGallery images={serviceData.gallery} title={serviceData.title} />
+      <ServiceGallery
+        images={serviceData.gallery}
+        title={serviceData.title}
+        disclaimer="Visual placeholders while we prepare photography — not shown as client before-and-after results."
+      />
 
       <ServicePricing pricing={serviceData.pricing} />
 
       <ServiceFAQ faqs={serviceData.faqs} />
 
+      {googlePayload?.reviews?.length ? (
+        <section className="my-16 max-w-5xl">
+          <GoogleReviews
+            payload={googlePayload}
+            heading="Client reviews from Google"
+            introLineText="Reviews shown here come from Google and may cover brows, lashes, or other appointments — read them as general studio feedback alongside treatment-specific guidance in your consultation."
+          />
+        </section>
+      ) : null}
+
       <ServiceTestimonials testimonials={serviceData.testimonials} />
 
       <div className="mt-16 text-center">
-        <h2 className="text-2xl font-bold mb-6 font-heading">Ready to Experience {serviceData.title}?</h2>
+        <h2 className="text-2xl font-bold mb-6 font-heading">Ready for effortless, polished lashes?</h2>
         <BooksyBookButton size="lg" className="bg-[#E0D4C8] hover:bg-[#D0C4B8] text-gray-800 px-8">
-          Book Your Lash Set
+          Book Free Consultation
         </BooksyBookButton>
       </div>
     </div>

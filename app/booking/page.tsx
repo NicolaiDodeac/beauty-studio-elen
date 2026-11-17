@@ -1,11 +1,13 @@
 import type { Metadata } from "next"
 import BookingCalendar from "@/components/booking/booking-calendar"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/booking",
   title: "Book an Appointment | Elen.MakeUp.Telford",
   description:
     "Schedule your beauty service appointment with Elen.MakeUp.Telford. Choose your service, date, and time.",
-}
+})
 
 export default function BookingPage() {
   return (
