@@ -3,7 +3,7 @@ import Link from "next/link"
 
 import { Container } from "@/components/marketing/container"
 import { Section } from "@/components/marketing/section"
-import { BooksyBookButton } from "@/components/booking/booksy-book-button"
+import { ConsultationButton } from "@/components/booking/consultation-button"
 import { Button } from "@/components/ui/button"
 
 export type AboutElenPreviewProps = {
@@ -52,9 +52,9 @@ export function AboutElenPreview({
               <Button asChild variant="ctaOutline" size="lg">
                 <Link href={meetHref}>{meetLabel}</Link>
               </Button>
-              <BooksyBookButton size="lg" variant="cta">
+              <ConsultationButton size="lg" variant="cta">
                 {primaryCta}
-              </BooksyBookButton>
+              </ConsultationButton>
             </div>
           </div>
         </div>

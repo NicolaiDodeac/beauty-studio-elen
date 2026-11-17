@@ -14,6 +14,7 @@ export type BooksyReviewsSummaryProps = {
   variant: "compact" | "section"
   /** When true, renders `quotes` only if the array is non-empty */
   showQuotes?: boolean
+  showProfileLink?: boolean
   quotes?: readonly BooksyReviewQuote[]
   className?: string
 }
@@ -21,6 +22,7 @@ export type BooksyReviewsSummaryProps = {
 export function BooksyReviewsSummary({
   variant,
   showQuotes = false,
+  showProfileLink = true,
   quotes = [],
   className,
 }: BooksyReviewsSummaryProps) {
@@ -75,21 +77,23 @@ export function BooksyReviewsSummary({
             </li>
           ))}
         </ul>
-      ) : (
+      ) : showProfileLink ? (
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-stone-600">
           Read verified reviews before booking your free consultation — star ratings and full feedback are on our Booksy
           profile.
         </p>
-      )}
+      ) : null}
 
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-        <Button asChild variant="ctaOutline" size="lg" className="border-stone-300 text-luxury-charcoal">
-          <Link href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-            View all reviews on Booksy
-            <ExternalLink className="h-4 w-4 opacity-70" aria-hidden />
-          </Link>
-        </Button>
-      </div>
+      {showProfileLink && (
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+          <Button asChild variant="ctaOutline" size="lg" className="border-stone-300 text-luxury-charcoal">
+            <Link href={url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              View all reviews on Booksy
+              <ExternalLink className="h-4 w-4 opacity-70" aria-hidden />
+            </Link>
+          </Button>
+        </div>
+      )}
     </div>
   )
 }
