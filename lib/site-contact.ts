@@ -34,8 +34,8 @@ export const SITE_ADDRESS_LINES = [
 export const SITE_WHATSAPP_DEFAULT_MESSAGE =
   "Hi! I'd like to get in touch about an appointment."
 
-export function siteWhatsAppUrl(prefilledMessage?: string) {
-  const base = `https://wa.me/${SITE_WHATSAPP_NUMBER}`
+export function siteWhatsAppUrl(prefilledMessage?: string, number = SITE_WHATSAPP_NUMBER) {
+  const base = `https://wa.me/${number}`
   const q = prefilledMessage?.trim()
   if (!q) return base
   return `${base}?text=${encodeURIComponent(q)}`

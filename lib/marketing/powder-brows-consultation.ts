@@ -2,6 +2,7 @@ import { siteWhatsAppUrl } from "@/lib/site-contact"
 
 export const POWDER_BROWS_PATH = "/powder-brows-telford"
 
+const POWDER_BROWS_WHATSAPP_NUMBER = "447350236916"
 const CAMPAIGN_PARAMS = ["source", "src", "campaign", "utm_campaign", "utm_source"]
 const FALLBACK_SOURCE = "PB-WEB"
 const CONSULTATION_MESSAGE =
@@ -17,5 +18,5 @@ export function powderBrowsConsultationUrl(params?: Pick<URLSearchParams, "get">
     }
   }
 
-  return siteWhatsAppUrl(`${CONSULTATION_MESSAGE} [${source}]`)
+  return siteWhatsAppUrl(`${CONSULTATION_MESSAGE} [${source}]`, POWDER_BROWS_WHATSAPP_NUMBER)
 }
