@@ -77,11 +77,9 @@ export function buildRootMetadataPartial(): Metadata {
     },
     description: SITE_TAGLINE,
     applicationName: SITE_NAME,
-    alternates: { canonical: url },
     openGraph: {
       type: "website",
       locale: "en_GB",
-      url,
       siteName: BUSINESS_DISPLAY_NAME,
       title: `${SITE_NAME_FULL} | Powder brows & semi-permanent makeup`,
       description: SITE_TAGLINE,

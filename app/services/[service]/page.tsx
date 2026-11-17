@@ -11,6 +11,7 @@ import ServiceTestimonials from "@/components/services/service-testimonials"
 import GoogleReviews from "@/components/reviews/google-reviews"
 import { getGoogleReviews } from "@/lib/google-reviews"
 import { isPlaceholderMediaSrc } from "@/lib/marketing/placeholder-media"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
 /*
  * MEDIA PLACEHOLDERS — `/services/[service]` — hero + 6 gallery tiles per key.
@@ -158,13 +159,12 @@ const services = {
 }
 
 type ServiceParams = {
-  params: {
-    service: string
-  }
+  params: Promise<{ service: string }>
 }
 
 export async function generateMetadata({ params }: ServiceParams): Promise<Metadata> {
-  const service = services[params.service as keyof typeof services]
+  const { service: slug } = await params
+  const service = services[slug as keyof typeof services]
 
   if (!service) {
     return {
@@ -173,14 +173,16 @@ export async function generateMetadata({ params }: ServiceParams): Promise<Metad
     }
   }
 
-  return {
+  return buildPageMetadata({
     title: `${service.title} | ELEN Makeup Telford`,
     description: service.description,
-  }
+    path: `/services/${slug}`,
+  })
 }
 
 export default async function ServicePage({ params }: ServiceParams) {
-  const service = services[params.service as keyof typeof services]
+  const { service: slug } = await params
+  const service = services[slug as keyof typeof services]
 
   if (!service) {
     notFound()
@@ -207,7 +209,7 @@ export default async function ServicePage({ params }: ServiceParams) {
         <div className="lg:col-span-2">
           <h2 className="text-2xl font-bold mb-4 font-heading">About {service.title}</h2>
           <p className="text-lg text-gray-700 mb-8">{service.longDescription}</p>
-          {params.service === "permanent-makeup" ? (
+          {slug === "permanent-makeup" ? (
             <p className="mb-8 text-lg text-gray-700">
               Interested mainly in brows? Start with our{" "}
               <Link

@@ -5,12 +5,14 @@ import BusinessHours from "@/components/contact/business-hours"
 import LocationMap from "@/components/contact/location-map"
 import { Button } from "@/components/ui/button"
 import { SITE_WHATSAPP_DEFAULT_MESSAGE, siteWhatsAppUrl } from "@/lib/site-contact"
+import { buildPageMetadata } from "@/lib/seo/metadata"
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/contact",
   title: "Book a Free Consultation",
   description:
     "Contact ELEN Makeup Telford — powder brows, PMU, and lash extensions. WhatsApp, phone, or message us to book your free consultation.",
-}
+})
 
 export default function ContactPage() {
   return (
