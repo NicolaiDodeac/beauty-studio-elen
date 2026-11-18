@@ -24,14 +24,14 @@ export default function AboutPage() {
 
       {/* Hero Section */}
       <div className="mb-16 grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <div className="relative h-[500px] overflow-hidden rounded-xl">
+        <div className="relative mx-auto aspect-[3/4] w-full max-w-md overflow-hidden rounded-xl lg:max-w-none">
           <Image
             src="/images/about/Elen.png"
             alt="Elen, founder of ELEN Makeup Telford"
             fill
-            className="object-cover object-[center_bottom]"
+            className="object-cover object-center"
             priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(min-width: 1024px) 50vw, (min-width: 496px) 448px, calc(100vw - 48px)"
           />
         </div>
         <div>
